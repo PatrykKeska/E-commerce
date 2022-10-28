@@ -15,6 +15,7 @@
     "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "typescript": "*",
     "web-vitals": "^2.1.4"
@@ -27,7 +28,7 @@
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "clean" : "yarn run format & yarn run lint & yarn run lint:fix"
+    "clean": "yarn run format & yarn run lint & yarn run lint:fix"
   },
   "eslintConfig": {
     "extends": [
