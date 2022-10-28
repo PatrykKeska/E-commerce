@@ -1,0 +1,9 @@
+@import "src/pages/styles/mixins/flex";
+.container{
+@include flexCenterRow;
+  padding: 10px 30px;
+  margin-left: 5vw;
+  &--center {
+    margin: 0;
+  }
+}
