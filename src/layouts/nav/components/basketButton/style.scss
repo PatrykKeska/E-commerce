@@ -1,0 +1,8 @@
+@import "src/pages/styles/mixins/flex";
+.button {
+  background :none;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  @include flexCenterRow;
+}
