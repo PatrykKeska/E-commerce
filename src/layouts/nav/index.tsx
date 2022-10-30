@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import { TopBar } from './components/topBar';
-import { NaviLink } from './components/naviLink';
+import { NaviLink} from './components/naviLink';
 import { Container } from './components/container/container';
 import { BasketButton } from './components/basketButton';
 import { CurrencyButton } from './components/currencyButton';
 import { GreenLogo } from '../../assets/svg/GreenLogo';
-
+import './styles.scss'
 export class Nav extends Component {
   render() {
     return (
@@ -16,7 +16,7 @@ export class Nav extends Component {
           <NaviLink name="kids" />
         </Container>
         <Container center>
-          <GreenLogo />
+          <GreenLogo/>
         </Container>
         <Container>
           <CurrencyButton />
