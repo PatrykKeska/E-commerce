@@ -4,6 +4,7 @@ type Props = SVGProps<SVGSVGElement>;
 
 const GreenLogo = (props: Props) => (
   <svg
+      className='green-logo'
     width={33}
     height={31}
     viewBox="0 0 33 31"
