@@ -1,12 +1,12 @@
 import { Component } from 'react';
 import { Nav } from '../../layouts/nav';
 
-export class Kids extends Component {
+export class Clothes extends Component {
   render() {
     return (
       <>
         <Nav />
-        <section>this is kids page</section>
+        <section>this is clothes page</section>
       </>
     );
   }

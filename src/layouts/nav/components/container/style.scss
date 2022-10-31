@@ -1,4 +1,4 @@
-@import "src/pages/styles/mixins/flex";
+@import "../../../../globalStyles/mixins/flex";
 .container{
 @include flexCenterRow;
   padding: 10px 30px;

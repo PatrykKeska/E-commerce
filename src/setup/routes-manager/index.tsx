@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { MainPage } from '../../pages/main/mainPage';
-import { Women } from '../../pages/women';
-import { Men } from '../../pages/men';
-import { Kids } from '../../pages/kids';
+import { All } from '../../pages/All';
+import { Clothes } from '../../pages/Clothes';
+import { Tech } from '../../pages/Tech';
 import React from 'react';
 
 const router = createBrowserRouter([
@@ -10,9 +10,9 @@ const router = createBrowserRouter([
     path: '/',
     element: <MainPage />,
   },
-  { path: '/women', element: <Women /> },
-  { path: '/men', element: <Men /> },
-  { path: '/kids', element: <Kids /> },
+  { path: '/All', element: <All /> },
+  { path: '/Clothes', element: <Clothes /> },
+  { path: '/Tech', element: <Tech /> },
 ]);
 
 export { router };
