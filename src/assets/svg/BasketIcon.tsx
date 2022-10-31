@@ -4,7 +4,7 @@ type Props = SVGProps<SVGSVGElement>;
 
 const BasketIcon = (props: Props) => (
   <svg
-      className='basket-logo'
+    className="basket-logo"
     width={20}
     height={19}
     viewBox="0 0 20 19"
