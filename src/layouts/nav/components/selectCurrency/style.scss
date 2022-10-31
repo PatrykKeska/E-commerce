@@ -1,0 +1,58 @@
+@import "src/globalStyles/mixins/flex";
+.select {
+  @include flexCenterColumn;
+  width: 50px;
+  background :none;
+  border: none;
+  padding: 5px;
+  position: relative;
+
+
+  &__positioner {
+    position: absolute;
+    min-width: 80px;
+    bottom: 0;
+    right: 0;
+    box-shadow: 0 0 10px 1px #a8a4a4;
+    animation: animateRender .3s linear forwards;
+    z-index: -1;
+
+
+
+
+  &__option{
+    @include flexCenterColumn;
+    align-items: flex-start;
+    width: 100%;
+    transition: .2s linear background-color;
+    background-color: white;
+    padding: 5px 10px;
+    &:nth-child(odd){
+      background-color: #EEEEEE;;
+    }
+    &:hover{
+background-color: #5ECE7B;
+      cursor: pointer;
+  }
+    &--picked{
+      background-color: white;
+      list-style: none;
+      gap: 10px;
+      @include flexCenterRow
+    }
+  }
+  }
+}
+
+
+@keyframes animateRender {
+from {
+  opacity: 0;
+  transform: translate(20%,0%);
+}
+
+  to {
+    opacity: 1;
+    transform: translate(20%,120%);
+  }
+}

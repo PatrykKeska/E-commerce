@@ -4,13 +4,17 @@ import { RouterProvider } from 'react-router-dom';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import { router } from './setup/routes-manager';
-
+import { ApolloProvider } from '@apollo/client';
+import { client } from './setup/ApolloClient';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ApolloProvider client={client}>
+      <RouterProvider router={router} />
+    </ApolloProvider>
   </React.StrictMode>,
 );
 
