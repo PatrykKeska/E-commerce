@@ -4,8 +4,8 @@ import { NaviLink } from './components/naviLink';
 import { Container } from './components/container/container';
 import { BasketButton } from './components/basketButton';
 import { GreenLogo } from '../../assets/svg/GreenLogo';
-import {SelectCurrency} from './components/selectCurrency';
 import './styles.scss';
+import SelectCurrency from './components/selectCurrency';
 export class Nav extends Component {
   render() {
     return (
