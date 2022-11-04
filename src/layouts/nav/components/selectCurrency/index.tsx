@@ -2,8 +2,18 @@ import { Component } from 'react';
 import './style.scss';
 import { State } from './types/types';
 import { ArrowIcon } from '../../../../assets/svg/ArrowIcon';
-import {getCurrency} from './Api/getCurrency';
-class SelectCurrency extends Component<{}, State> {
+import { getCurrency } from '../../../../Api/getCurrency';
+import { setCurrency } from '../../../../store/features/currency/currency-slice';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { RootState } from '../../../../store';
+
+interface Props {
+  dispatch: Dispatch;
+  currency: string;
+}
+
+class SelectCurrency extends Component<Props, State> {
   state: State = {
     isOpen: false,
     selectValue: '$',
@@ -14,17 +24,18 @@ class SelectCurrency extends Component<{}, State> {
     this.setState((prev: State) => ({ isOpen: !prev.isOpen }));
   };
   handlePickCurrency = (symbol: string) => {
-    this.setState({ selectValue: symbol, isOpen: false });
+    this.props.dispatch(setCurrency(symbol));
+    this.setState({ isOpen: false });
   };
   componentDidMount() {
     (async () => {
-      const result = await getCurrency()
+      const result = await getCurrency();
       this.setState({ availableCurrencies: result.data.currencies });
     })();
   }
 
   render() {
-    const { selectValue, availableCurrencies, isOpen } = this.state;
+    const { availableCurrencies, isOpen } = this.state;
     return (
       <>
         <ul className="select">
@@ -32,7 +43,7 @@ class SelectCurrency extends Component<{}, State> {
             onClick={this.handleClick}
             className="select__positioner__option--picked"
           >
-            {selectValue} <ArrowIcon />
+            {this.props.currency} <ArrowIcon />
           </li>
           {isOpen && (
             <div className="select__positioner">
@@ -52,5 +63,8 @@ class SelectCurrency extends Component<{}, State> {
     );
   }
 }
+const mapStateToProps = (state: RootState) => ({
+  currency: state.currency.value,
+});
 
-export { SelectCurrency };
+export default connect(mapStateToProps)(SelectCurrency);

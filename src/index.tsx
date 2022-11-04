@@ -6,15 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import { router } from './setup/routes-manager';
 import { ApolloProvider } from '@apollo/client';
 import { client } from './setup/ApolloClient';
+import { Provider } from 'react-redux';
+import { store } from './store';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <RouterProvider router={router} />
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <RouterProvider router={router} />
+      </ApolloProvider>
+    </Provider>
   </React.StrictMode>,
 );
 

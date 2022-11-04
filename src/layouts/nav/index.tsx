@@ -3,9 +3,9 @@ import { TopBar } from './components/topBar';
 import { NaviLink } from './components/naviLink';
 import { Container } from './components/container/container';
 import { BasketButton } from './components/basketButton';
-import { SelectCurrency } from './components/selectCurrency';
 import { GreenLogo } from '../../assets/svg/GreenLogo';
 import './styles.scss';
+import SelectCurrency from './components/selectCurrency';
 export class Nav extends Component {
   render() {
     return (
