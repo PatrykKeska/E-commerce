@@ -1,0 +1,78 @@
+@import "src/globalStyles/mixins/flex";
+.product{
+  @include flexCenterColumn;
+  align-items: flex-start;
+  padding:15px;
+  width: 30vw;
+  height: 30vw;
+  max-width: 400px;
+  max-height: 400px;
+  min-height: 300px;
+  min-width: 300px;
+  position: relative;
+  gap: 10px;
+  margin: 10px;
+  color: #1D1F22;
+  transition: .3s linear all;
+
+  &-is-active{
+    background-color: white;
+    box-shadow: 0 4px 35px rgba(168, 172, 176, 0.19);
+  }
+
+  &__basket-button{
+    position: absolute;
+    bottom: 15%;
+    right: 15%;
+    animation:showUp .3s ease-in forwards;
+
+  }
+  &__img{
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    object-position:center;
+    align-self: center;
+  }
+
+
+    &__title {
+      font-weight: 300;
+      font-size: 16px;
+
+    }
+
+    &__currency {
+      font-weight: 500;
+      vertical-align: bottom;
+      line-height: 100%;
+
+      &__span-first {
+        font-size: 18px;
+        vertical-align: bottom;
+      }
+
+      &__span-rest{
+        vertical-align: top;
+      }
+
+      &__span-symbol {
+        font-size: 18px;
+        vertical-align: hanging;
+
+      }
+    }
+
+}
+
+
+@keyframes showUp {
+  from{
+    opacity: 0;
+    transform: translateX(20%);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
