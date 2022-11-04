@@ -12,3 +12,13 @@
   align-items: center;
   flex-direction: row;
 }
+
+
+@mixin flexGridItems{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+  flex-wrap: wrap;
+
+}

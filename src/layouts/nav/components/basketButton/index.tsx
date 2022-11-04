@@ -5,7 +5,7 @@ class BasketButton extends Component {
   render() {
     return (
       <button className="button">
-         <BasketIcon />
+        <BasketIcon />
       </button>
     );
   }

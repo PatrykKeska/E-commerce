@@ -1,11 +1,11 @@
 @import "src/globalStyles/mixins/flex";
 .select {
+  position: relative;
   @include flexCenterColumn;
   width: 50px;
   background :none;
   border: none;
   padding: 5px;
-  position: relative;
 
 
   &__positioner {
@@ -15,7 +15,7 @@
     right: 0;
     box-shadow: 0 0 10px 1px #a8a4a4;
     animation: animateRender .3s linear forwards;
-    z-index: -1;
+    z-index: 1;
 
 
 
@@ -48,7 +48,7 @@ background-color: #5ECE7B;
 @keyframes animateRender {
 from {
   opacity: 0;
-  transform: translate(20%,0%);
+  transform: translate(20%,80%);
 }
 
   to {

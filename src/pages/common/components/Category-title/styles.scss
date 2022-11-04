@@ -1,0 +1,12 @@
+.category-title{
+  text-transform: uppercase;
+  font-weight: 400;
+  text-align: center;
+  width: 300px;
+  color: #1D1F22;
+  margin: 50px 100px;
+  font-size: 40px;
+  @media(max-width: 500px){
+   margin:50px auto;
+  }
+}

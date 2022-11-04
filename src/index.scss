@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&display=swap');
 
 
 *, *::before, *::after {
@@ -6,16 +6,19 @@
 }
 * {
   margin: 0;
-  font-family: 'Releway', sans-serif;
 }
 
 html, body {
   height: 100%;
 }
 
+html * {
+  font-family: 'Releway', sans-serif;
+}
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+
 }
 
 img, picture, video, canvas, svg {
@@ -34,3 +37,4 @@ p, h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
