@@ -3,7 +3,7 @@ import './styles.scss';
 import { Props, State } from './types/types';
 import clsx from 'clsx';
 import { ProductShopCartButton } from '../Product-shop-cart-button';
-import { addRedirectMethod } from '../Redirector';
+import { addRedirectMethod } from '../RedirectorHOC';
 
 class Product extends Component<Props, State> {
   state: State = {
