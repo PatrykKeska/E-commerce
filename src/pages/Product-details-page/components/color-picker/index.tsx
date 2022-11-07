@@ -6,20 +6,16 @@ import {setProductColor} from '../../../../store/features/product-details/produc
 class ColorPicker extends Component<Props,State>{
   state: State = {
     checked: false,
-    pickedColor : '',
   };
   handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {dispatch, selector} = this.props
-    this.setState({pickedColor: e.target.value})
+    const {dispatch} = this.props
     dispatch(setProductColor(e.target.value))
   };
 
 
   render() {
-    const details = this.props.selector
-    console.log(details)
-    const {pickedColor, checked} = this.state
-    const {attributes} = this.props
+    const {checked} = this.state
+    const {attributes, selector} = this.props
     return (
       <section className="color-picker">
         <h3 className="color-picker__name">color:</h3>
@@ -28,7 +24,7 @@ class ColorPicker extends Component<Props,State>{
             <label
                 htmlFor={color}
                 style={{backgroundColor: color}}
-                className={`color-picker__select-options__label ${color === pickedColor ? 'picked-color' : ''}`}
+                className={`color-picker__select-options__label ${color === selector.color ? 'picked-color' : ''}`}
             />
             <input
                 onChange={this.handleColorChange}
