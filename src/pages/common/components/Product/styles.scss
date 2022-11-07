@@ -15,10 +15,26 @@
   color: #1D1F22;
   transition: .3s linear all;
 
+  &--out-of-stock{
+    opacity: .6;
+  }
+
+  &__out-of-stock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-100%);
+    color: #050505;
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+
   &-is-active{
     background-color: white;
     box-shadow: 0 4px 35px rgba(168, 172, 176, 0.19);
   }
+
+
 
   &__basket-button{
     position: absolute;
@@ -64,6 +80,7 @@
     }
 
 }
+
 
 
 @keyframes showUp {

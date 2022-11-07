@@ -3,12 +3,14 @@ import './styles.scss';
 import { Props, State } from './types/types';
 import clsx from 'clsx';
 import { ProductShopCartButton } from '../Product-shop-cart-button';
+import { addRedirectMethod } from '../Redirector';
 
 class Product extends Component<Props, State> {
-  state = {
+  state: State = {
     isActive: false,
+    attribute: false,
   };
-  
+
   Capitalize(str: number) {
     return str.toString().charAt(0).toUpperCase() + str.toString().slice(1);
   }
@@ -23,12 +25,35 @@ class Product extends Component<Props, State> {
       });
     }
   };
+
+  handleRedirect = () => {
+    const navi = this.props.navigate;
+    navi(`${this.props.id}`);
+  };
+  componentDidMount() {
+    const { attributes } = this.props;
+    if (!attributes) {
+      this.setState({
+        attribute: false,
+      });
+    } else if (attributes.length === 0) {
+      this.setState({
+        attribute: false,
+      });
+    } else {
+      this.setState({
+        attribute: true,
+      });
+    }
+  }
+
   render() {
     const { name, id, currency, prices, inStock, gallery, category } =
       this.props;
-    const { isActive } = this.state;
+    const { isActive, attribute } = this.state;
     return (
       <section
+        onClick={this.handleRedirect}
         onMouseEnter={() => this.handleActive(true)}
         onMouseLeave={() => this.handleActive(false)}
         className={clsx(
@@ -37,6 +62,7 @@ class Product extends Component<Props, State> {
           isActive && 'product-is-active',
         )}
       >
+        {!inStock && <p className="product__out-of-stock">Out of Stock</p>}
         <img
           className="product__img"
           src={gallery[0]}
@@ -52,7 +78,7 @@ class Product extends Component<Props, State> {
             {prices.toString().slice(1, prices.toString().length)}
           </span>
         </p>
-        {isActive && (
+        {isActive && !attribute && inStock && (
           <ProductShopCartButton
             className="product__basket-button"
             productID={id}
@@ -60,9 +86,8 @@ class Product extends Component<Props, State> {
           />
         )}
       </section>
-
     );
   }
 }
 
-export { Product };
+export default addRedirectMethod(Product);

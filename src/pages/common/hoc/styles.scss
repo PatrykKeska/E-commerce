@@ -1,0 +1,6 @@
+@use 'src/globalStyles/mixins/flex';
+@use './src/globalStyles/mixins/sections';
+.main-section {
+  @include sections.mainSection;
+@include flex.flexGridItems;
+}

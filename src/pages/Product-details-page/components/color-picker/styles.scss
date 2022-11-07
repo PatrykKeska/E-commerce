@@ -1,0 +1,46 @@
+@use 'src/globalStyles/mixins/flex';
+.color-picker {
+  width: 300px;
+  padding: 10px;
+  &__name{
+text-transform: uppercase;
+    text-align: left;
+    color: #1D1F22;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &__select-options {
+    width: 300px;
+@include  flex.flexInlineItems;
+
+
+
+    &__label {
+      background-color: red;
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      margin: 5px;
+      position: relative;
+
+
+    }
+      &__input {
+        display: none;
+      }
+  }
+}
+
+.picked-color{
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 37px;
+    height: 37px;
+    border: 2px solid #5ECE7B;
+  }
+}
