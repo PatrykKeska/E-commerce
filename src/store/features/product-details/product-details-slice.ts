@@ -40,4 +40,4 @@ export const productDetailsSlice = createSlice({
     },
 });
 
-export const { setProductColor } = productDetailsSlice.actions;
+export const { setProductColor, setProductSize, setCapacity } = productDetailsSlice.actions;
