@@ -1,6 +1,6 @@
 import { client } from '../setup/ApolloClient';
 import { gql } from '@apollo/client';
-import { ApiProduct, Currency } from '../pages/Clothes/types/types';
+import { ApiProduct, Currency } from '../pages/common/hoc/types/types';
 
 const getProducts = async (category: string) => {
   return await client.query({
@@ -12,6 +12,9 @@ const getProducts = async (category: string) => {
             name
             id
             inStock
+            attributes {
+              id
+            }
             category
             gallery
             prices {

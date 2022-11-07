@@ -4,7 +4,7 @@ export interface SingleProduct {
   inStock: boolean;
   gallery: string[];
   currency: string;
-  category:string
+  category: string;
   prices: any;
 }
 
@@ -23,7 +23,7 @@ export interface Currency {
 
 export interface ApiProduct {
   name: string;
-  category:string
+  category: string;
   id: string;
   inStock: boolean;
   gallery: string[];
