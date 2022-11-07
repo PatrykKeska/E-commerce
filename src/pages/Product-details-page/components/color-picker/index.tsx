@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './styles.scss';
-class ColorPicker extends Component<any,any>{
-  state = {
-    colors: ['red', 'blue', 'black'],
+import {Props, State} from './types';
+class ColorPicker extends Component<Props,State>{
+  state: State = {
     checked: false,
     pickedColor : '',
   };
@@ -12,12 +12,13 @@ class ColorPicker extends Component<any,any>{
 
 
   render() {
-    const {colors,pickedColor, checked} = this.state
+    const {pickedColor, checked} = this.state
+    const {attributes} = this.props
     return (
       <section className="color-picker">
         <h3 className="color-picker__name">color:</h3>
         <div className="color-picker__select-options">
-          {colors.map((color)=>(<div key={color}>
+          {attributes.map((color)=>(<div key={color}>
             <label
                 htmlFor={color}
                 style={{backgroundColor: color}}

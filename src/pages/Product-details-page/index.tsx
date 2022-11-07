@@ -5,17 +5,18 @@ import { ColorPicker } from './components/color-picker';
 
 class ProductDetailsPage extends Component {
   state = {
-    attributes: [],
+    attributes: ['crimson', 'blue', 'green', 'yellow'],
     gallery: [],
   };
   render() {
+      const {attributes} = this.state
     return (
       <>
         <Nav />
         <section>
           this is page where we gonna show all details about product
           <AddCartButton />
-          <ColorPicker />
+          <ColorPicker attributes={attributes}/>
         </section>
       </>
     );
