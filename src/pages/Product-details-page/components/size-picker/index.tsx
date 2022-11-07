@@ -15,7 +15,6 @@ class SizePicker extends Component<Props,State> {
     render() {
         const {sizes ,selector} = this.props
         const {checked} = this.state
-        console.log(selector)
         return (
                 <section className="size-picker">
                     <h3 className="size-picker__name">size:</h3>
