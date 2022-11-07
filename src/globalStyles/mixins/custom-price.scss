@@ -1,0 +1,25 @@
+@mixin currency-title{
+  font-weight: 300;
+  font-size: 16px;
+  color: #1D1F22;
+}
+
+@mixin currency-wrapper{
+  font-weight: 500;
+  vertical-align: bottom;
+  line-height: 100%;
+}
+
+@mixin span-first{
+  font-size: 18px;
+  vertical-align: bottom;
+}
+
+@mixin span-symbol{
+  font-size: 18px;
+  vertical-align: hanging;
+}
+
+@mixin span-rest{
+  vertical-align: top;
+}

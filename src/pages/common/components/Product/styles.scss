@@ -1,6 +1,7 @@
-@import "src/globalStyles/mixins/flex";
+@use "src/globalStyles/mixins/flex";
+@use './src/globalStyles/mixins/custom-price';
 .product{
-  @include flexCenterColumn;
+  @include flex.flexCenterColumn;
   align-items: flex-start;
   padding:15px;
   width: 30vw;
@@ -53,28 +54,22 @@
 
 
     &__title {
-      font-weight: 300;
-      font-size: 16px;
-
+   @include custom-price.currency-title;
     }
 
     &__currency {
-      font-weight: 500;
-      vertical-align: bottom;
-      line-height: 100%;
+    @include custom-price.currency-wrapper;
 
       &__span-first {
-        font-size: 18px;
-        vertical-align: bottom;
+        @include custom-price.span-first;
       }
 
       &__span-rest{
-        vertical-align: top;
+        @include custom-price.span-rest;
       }
 
       &__span-symbol {
-        font-size: 18px;
-        vertical-align: hanging;
+        @include custom-price.span-symbol;
 
       }
     }
