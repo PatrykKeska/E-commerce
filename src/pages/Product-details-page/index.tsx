@@ -3,6 +3,7 @@ import { Nav } from '../../layouts/nav';
 import { AddCartButton } from './components/add-to-cart-button';
 import {ColorPickerComponent} from './components/color-picker';
 import {SizePickerComponent} from './components/size-picker';
+import {ProductPriceComponent} from './components/product-price';
 
 class ProductDetailsPage extends Component {
   state = {
@@ -20,6 +21,7 @@ class ProductDetailsPage extends Component {
           <AddCartButton />
           <ColorPickerComponent attributes={attributes}/>
             <SizePickerComponent sizes={sizes}/>
+            <ProductPriceComponent />
         </section>
       </>
     );
