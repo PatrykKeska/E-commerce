@@ -4,28 +4,40 @@ export interface productDetailsState {
     size : string;
     color : string
     price: number;
+    capacity: string;
 }
 
 const initialState: productDetailsState = {
     size: '',
     color: '',
     price: 0,
+    capacity: ''
 };
 
-interface setDetails {
-    payload: productDetailsState;
+interface setColorDetails {
+    payload: string;
+}
+interface setSizeDetails {
+    payload: string;
+}
+interface setCapacityDetails {
+    payload: string;
 }
 
 export const productDetailsSlice = createSlice({
     name: 'productDetails',
     initialState,
     reducers: {
-        setProductDetails: (state: productDetailsState, action: setDetails) => {
-            state.color = action.payload.color;
-            state.size = action.payload.size;
-            state.price = action.payload.price;
+        setProductColor: (state: productDetailsState, action: setColorDetails) => {
+            state.color = action.payload
+        },
+        setProductSize: (state: productDetailsState, action: setSizeDetails) => {
+            state.size = action.payload
+        },
+        setCapacity: (state: productDetailsState, action: setCapacityDetails) => {
+            state.capacity = action.payload
         },
     },
 });
 
-export const { setProductDetails } = productDetailsSlice.actions;
+export const { setProductColor } = productDetailsSlice.actions;
