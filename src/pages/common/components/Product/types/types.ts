@@ -3,11 +3,14 @@ export interface Props {
   id: string;
   inStock: boolean;
   gallery: string[];
+  attributes?: [];
   currency: string;
   prices: number;
-  category:string;
+  category: string;
+  navigate: any;
 }
 
 export interface State {
   isActive: boolean;
+  attribute: boolean;
 }
