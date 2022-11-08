@@ -20,7 +20,7 @@ class ProductDetailsPage extends Component {
           this is page where we gonna show all details about product
           <AddCartButton />
           <ColorPickerComponent attributes={attributes}/>
-            <SizePickerComponent sizes={sizes}/>
+            <SizePickerComponent attributes={sizes}/>
             <ProductPriceComponent />
         </section>
       </>

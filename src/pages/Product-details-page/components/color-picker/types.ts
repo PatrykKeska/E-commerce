@@ -1,9 +1,12 @@
+import { SliceDispatch} from '../../../../store';
+
 export interface State {
     checked: boolean
 }
 
-export interface Props {
-attributes: Array<string>;
-dispatch: any;
-selector: any
+
+export interface ColorPickerProps {
+attributes?: Array<string>;
+    dispatch?: SliceDispatch;
+    selector?: any
 }

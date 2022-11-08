@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import {Props, State} from './types';
+import {ColorPickerProps, State} from './types';
 import {ReduxHOC} from '../../../common/components/ReduxHOC';
 import {setProductColor} from '../../../../store/features/product-details/product-details-slice';
-class ColorPicker extends Component<Props,State>{
+class ColorPicker extends Component<ColorPickerProps,State>{
   state: State = {
     checked: false,
   };

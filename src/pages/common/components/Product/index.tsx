@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import './styles.scss';
-import { Props, State } from './types/types';
+import { ProductProps, State } from './types/types';
 import clsx from 'clsx';
 import { ProductShopCartButton } from '../Product-shop-cart-button';
 import { addRedirectMethod } from '../RedirectorHOC';
 
-class Product extends Component<Props, State> {
+class Product extends Component<ProductProps, State> {
   state: State = {
     isActive: false,
     attribute: false,
