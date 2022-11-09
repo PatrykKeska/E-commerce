@@ -1,0 +1,29 @@
+@use'./src/globalStyles/mixins/flex';
+.product-details-main-wrapper{
+  @media(max-width: 700px){
+    @include flex.flexCenterColumn;
+  }
+  width: 100vw;
+  min-height: 100vh;
+  max-width: 2000px;
+  @include flex.flexCenterRow;
+  align-items: flex-start;
+  padding: 100px 50px;
+  gap: 100px;
+
+  &__left-column{
+    width: 60%;
+    @include flex.flexCenterColumn;
+    padding: 10px;
+  }
+  &__right-column{
+    @media(max-width: 700px){
+      align-self: flex-start;
+    }
+    @include flex.flexCenterColumn;
+    align-items: flex-start;
+    gap: 20px;
+    width: 40%;
+    padding: 10px;
+  }
+}

@@ -1,7 +1,6 @@
 @use 'src/globalStyles/mixins/flex';
 .color-picker {
   width: 300px;
-  padding: 10px;
   &__name{
 text-transform: uppercase;
     text-align: left;
@@ -17,7 +16,6 @@ text-transform: uppercase;
 
 
     &__label {
-      background-color: red;
       width: 32px;
       height: 32px;
       display: inline-block;
@@ -39,8 +37,8 @@ text-transform: uppercase;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 37px;
-    height: 37px;
+    width: 39px;
+    height: 39px;
     border: 2px solid #5ECE7B;
   }
 }

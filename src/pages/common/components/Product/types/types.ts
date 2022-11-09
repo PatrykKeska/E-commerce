@@ -1,4 +1,4 @@
-export interface Props {
+export interface ProductProps {
   name: string;
   id: string;
   inStock: boolean;

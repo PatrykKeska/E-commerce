@@ -1,0 +1,59 @@
+@use './src/globalStyles/mixins/flex';
+.product-image-wrapper{
+  @media(max-width: 700px){
+    @include flex.flexCenterColumn;
+    flex-direction: column-reverse;
+
+  }
+@include flex.flexCenterRow;
+  max-width: 50vw;
+  gap: 50px;
+  &__preview{
+    @media(max-width: 700px){
+      overflow: scroll;
+      width: 80vw;
+      @include flex.flexCenterRow;
+
+    }
+   @include flex.flexCenterColumn;
+    width: 100px;
+    gap: 30px;
+    &__photo{
+      width: 90%;
+      height: 90%;
+      max-width: 90px;
+      max-height: 90px;
+      object-fit: cover;
+      object-position:center;
+      align-self: center;
+    }
+  }
+  &__main-photo{
+    @media(max-width: 700px){
+      align-self: center;
+    }
+ width: 40vw;
+    height: 40vw;
+    max-width:600px;
+    max-height: 600px;
+    object-fit: cover;
+    object-position:center;
+    align-self: flex-start;
+    animation: reRenderPhoto .4s linear forwards;
+  }
+}
+
+
+
+@keyframes reRenderPhoto {
+  from{
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0%);
+
+
+  }
+}

@@ -1,0 +1,46 @@
+@use './src/globalStyles/mixins/flex';
+.size-picker {
+  width: 300px;
+  &__name{
+    text-transform: uppercase;
+    text-align: left;
+    color: #1D1F22;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &__select-options {
+    width: 300px;
+    @include  flex.flexInlineItems;
+
+
+
+    &__label {
+      width: 63px;
+      height: 45px;
+      border:1px solid #1D1F22;
+      margin: 5px;
+      position: relative;
+      @include flex.flexCenterColumn;
+      transition: .3s linear all;
+   &:hover{
+     cursor: pointer;
+   }
+
+      &__span{
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+    &__input {
+      display: none;
+    }
+  }
+}
+
+.picked-size{
+background-color:#1D1F22;
+  color: white;
+}
