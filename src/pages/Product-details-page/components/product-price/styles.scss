@@ -7,12 +7,12 @@
   align-items: flex-start;
   width: 100px;
   height: 80px;
-  border: 2px solid black;
   padding: 5px;
   &__name{
 @include custom-price.currency-title;
     font-weight: 700;
     font-size: 18px;
+    margin-bottom: 15px;
     text-transform: uppercase;
 
   }

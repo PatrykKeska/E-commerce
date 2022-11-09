@@ -1,7 +1,6 @@
 @use 'src/globalStyles/mixins/flex';
 .color-picker {
   width: 300px;
-  padding: 10px;
   &__name{
 text-transform: uppercase;
     text-align: left;
