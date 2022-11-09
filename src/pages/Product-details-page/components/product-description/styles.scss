@@ -1,0 +1,11 @@
+.product-description-wrapper{
+max-width: 300px;
+  text-align: justify;
+  &__text{
+    color: #1D1F22;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Roboto',sans-serif;
+
+  }
+}
