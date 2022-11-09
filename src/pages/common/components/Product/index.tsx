@@ -1,18 +1,18 @@
 import { Component } from 'react';
 import './styles.scss';
-import { Props, State } from './types/types';
+import { ProductProps, State } from './types/types';
 import clsx from 'clsx';
 import { ProductShopCartButton } from '../Product-shop-cart-button';
-import { addRedirectMethod } from '../Redirector';
+import { addRedirectMethod } from '../RedirectorHOC';
 
-class Product extends Component<Props, State> {
+class Product extends Component<ProductProps, State> {
   state: State = {
     isActive: false,
     attribute: false,
   };
 
-  Capitalize(str: number) {
-    return str.toString().charAt(0).toUpperCase() + str.toString().slice(1);
+  Capitalize(prices: number) {
+    return prices.toString().slice(1, prices.toString().length);
   }
   handleActive = (enter: boolean) => {
     if (enter) {
@@ -75,7 +75,7 @@ class Product extends Component<Props, State> {
             {prices.toString()[0]}
           </span>
           <span className="product__currency__span-rest">
-            {prices.toString().slice(1, prices.toString().length)}
+            {this.Capitalize(prices)}
           </span>
         </p>
         {isActive && !attribute && inStock && (
