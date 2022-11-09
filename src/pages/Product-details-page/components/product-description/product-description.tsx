@@ -2,11 +2,16 @@ import { Component } from 'react';
 import { Props } from './types';
 import './styles.scss';
 class ProductDescription extends Component<Props> {
+constructor(props) {
+  super(props);
+}
+  convertToHtml(){
+    return{__html: this.props.attributes};
+  }
   render() {
-    const { attributes } = this.props;
     return (
       <section className="product-description-wrapper">
-        <p className="product-description-wrapper__text">{attributes}</p>
+        <div className='product-description-wrapper__text' dangerouslySetInnerHTML={this.convertToHtml()}/>
       </section>
     );
   }
