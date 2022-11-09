@@ -12,7 +12,7 @@ class Product extends Component<ProductProps, State> {
   };
 
   Capitalize(prices: number) {
-    return prices.toString().slice(1, prices.toString().length)
+    return prices.toString().slice(1, prices.toString().length);
   }
   handleActive = (enter: boolean) => {
     if (enter) {

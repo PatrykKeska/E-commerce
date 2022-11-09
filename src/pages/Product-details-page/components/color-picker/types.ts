@@ -1,12 +1,11 @@
-import { SliceDispatch} from '../../../../store';
+import { SliceDispatch } from '../../../../store';
 
 export interface State {
-    checked: boolean
+  checked: boolean;
 }
 
-
 export interface ColorPickerProps {
-attributes?: Array<string>;
-    dispatch?: SliceDispatch;
-    selector?: any
+  attributes?: Array<string>;
+  dispatch?: SliceDispatch;
+  selector?: any;
 }

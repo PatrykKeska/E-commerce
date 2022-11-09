@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import {ProductProps} from './Product/types/types';
+import { ProductProps } from './Product/types/types';
 
 interface Props extends ProductProps {
-  children? : React.ReactNode
+  children?: React.ReactNode;
 }
 
 const addRedirectMethod = (Component: React.ComponentType<Props>) => {
