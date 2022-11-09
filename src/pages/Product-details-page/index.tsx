@@ -8,23 +8,48 @@ import { ProductImage } from './components/product-image';
 import { ProductDescription } from './components/product-description/product-description';
 import './styles.scss';
 import {ProductName} from './components/product-name';
-class ProductDetailsPage extends Component {
-  state = {
+import {ParamHoc} from '../common/components/ParamHOC';
+import {Props, State} from './types';
+import {getProductDetails} from '../../Api/getProductDetails';
+class ProductDetailsPage extends Component<Props, State> {
+  state: State = {
     name: 'PlayStation 5',
-    colors: ['crimson', 'blue', 'green', 'yellow'],
-    sizes: ['s', 'm', 'l', 'xl'],
-    gallery: [
-      'https://images-na.ssl-images-amazon.com/images/I/510VSJ9mWDL._SL1262_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/610%2B69ZsKCL._SL1500_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/51iPoFwQT3L._SL1230_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/61qbqFcvoNL._SL1500_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/51HCjA3rqYL._SL1230_.jpg',
-    ],
-    description:
-      'A good gaming console. Plays games of PS4! Enjoy if you can buy it mwahahahaha',
+    brand: '',
+    colors: null,
+    sizes: null,
+    gallery: [],
+    description:''
   };
+  componentDidMount() {
+    (async ()=>{
+    const {useParams} = this.props
+     const {data} = await getProductDetails(useParams.id);
+    const availableAttributes = await data.product.attributes
+      availableAttributes.map((attribute)=> {
+        if(attribute.name === 'Color'){
+          const colors = attribute.items.map((attr)=> attr.value)
+          this.setState({
+            colors
+          })
+        } if(attribute.name === 'Size' || attribute.name === 'Capacity'){
+          const sizes = attribute.items.map((attr)=> attr.value)
+          this.setState({
+            sizes
+          })
+        }
+      })
+      this.setState({
+        gallery: data.product.gallery,
+        name: data.product.name,
+        brand: data.product.brand,
+        description:data.product.description
+      })
+
+    })()
+  }
+
   render() {
-    const { colors, sizes, gallery, description, name } = this.state;
+    const { colors, sizes, gallery, description, name,brand } = this.state;
     return (
       <>
         <Nav />
@@ -36,9 +61,10 @@ class ProductDetailsPage extends Component {
             />
           </section>
           <section className="product-details-main-wrapper__right-column">
-            <ProductName name={name}/>
-            <SizePickerComponent attributes={sizes} />
-            <ColorPickerComponent attributes={colors} />
+            <ProductName brand name={brand} />
+            <ProductName name={name} />
+            {sizes && <SizePickerComponent attributes={sizes} />}
+            {colors && <ColorPickerComponent attributes={colors} />}
             <ProductPriceComponent />
             <AddCartButton />
             <ProductDescription attributes={description} />
@@ -48,5 +74,5 @@ class ProductDetailsPage extends Component {
     );
   }
 }
-
-export { ProductDetailsPage };
+const ProductDetails = ParamHoc(ProductDetailsPage)
+export { ProductDetails };
