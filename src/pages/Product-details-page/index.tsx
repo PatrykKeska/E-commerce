@@ -13,12 +13,13 @@ import { getProductDetails } from '../../Api/getProductDetails';
 import { ProductImageComponent } from './components/product-image';
 class ProductDetailsPage extends Component<Props, State> {
   state: State = {
-    name: 'PlayStation 5',
+    name: '',
     brand: '',
     colors: null,
     sizes: null,
     gallery: [],
     description: '',
+    price: [],
   };
   componentDidMount() {
     (async () => {
@@ -44,12 +45,24 @@ class ProductDetailsPage extends Component<Props, State> {
         name: data.product.name,
         brand: data.product.brand,
         description: data.product.description,
+        price: data.product.prices,
       });
     })();
   }
+  componentWillUnmount() {
+    this.setState({
+      name: '',
+      brand: '',
+      colors: null,
+      sizes: null,
+      gallery: [],
+      description: '',
+    });
+  }
 
   render() {
-    const { colors, sizes, gallery, description, name, brand } = this.state;
+    const { colors, sizes, gallery, description, name, brand, price } =
+      this.state;
     return (
       <>
         <Nav />
@@ -68,7 +81,7 @@ class ProductDetailsPage extends Component<Props, State> {
             <ProductName name={name} />
             {sizes && <SizePickerComponent attributes={sizes} />}
             {colors && <ColorPickerComponent attributes={colors} />}
-            <ProductPriceComponent />
+            <ProductPriceComponent price={price} />
             <AddCartButton />
             <ProductDescription attributes={description} />
           </section>
