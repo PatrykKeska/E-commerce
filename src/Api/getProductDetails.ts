@@ -1,41 +1,38 @@
-import {client} from '../setup/ApolloClient';
-import {gql} from '@apollo/client';
+import { client } from '../setup/ApolloClient';
+import { gql } from '@apollo/client';
 
 const getProductDetails = async (productID: string) => {
-    return await client.query({
-        query: gql`
+  return await client.query({
+    query: gql`
       query GetProductsDetails($input: String!) {
-         product(id:$input){
-    name
-    brand
-    gallery
-    description
-    prices{
-        amount
-        currency{
-            label
-            symbol
+        product(id: $input) {
+          name
+          brand
+          gallery
+          description
+          prices {
+            amount
+            currency {
+              label
+              symbol
+            }
+          }
+          brand
+          inStock
+          attributes {
+            name
+            items {
+              value
+              id
+            }
+          }
         }
-    }
-    brand
-    inStock
-    attributes{
-        name
-        items{
-            value
-            id
-
-        }
-    }
-}
       }
     `,
-        variables: {
-            input: productID,
-        },
-    });
+    variables: {
+      input: productID,
+    },
+  });
 };
 
-
-export {getProductDetails}
-
+export { getProductDetails };
