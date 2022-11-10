@@ -9,4 +9,5 @@ export interface State {
   sizes: string[] | null;
   gallery: string[];
   description: string;
+  price: [];
 }
