@@ -12,6 +12,11 @@ class ColorPicker extends Component<ColorPickerProps, State> {
     dispatch(setProductColor(e.target.value));
   };
 
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(setProductColor(''));
+  }
+
   render() {
     const { checked } = this.state;
     const { attributes, selector } = this.props;
