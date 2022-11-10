@@ -3,7 +3,17 @@
   @media(max-width: 700px){
     @include flex.flexCenterColumn;
     flex-direction: column-reverse;
+    position: relative;
 
+  }
+  &__button{
+    @media(max-width: 700px){
+      display: inline-block;
+     padding: 20px;
+    }
+    display: none;
+    background: none;
+    border: none;
   }
 @include flex.flexCenterRow;
   max-width: 40vw;
@@ -12,12 +22,23 @@
   &__preview{
     @media(max-width: 700px){
       overflow: scroll;
-      width: 80vw;
+      width: 70vw;
       @include flex.flexCenterRow;
+      position: relative;
+      &::-webkit-scrollbar {
+        width: 1px;
+      }
+
+      &::-webkit-scrollbar-track {
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+      }
 
     }
+
    @include flex.flexCenterColumn;
-    width: 100px;
     gap: 30px;
     &__photo{
       width: 100%;
@@ -34,6 +55,8 @@
   &__main-photo{
     @media(max-width: 700px){
       align-self: center;
+      width: 60vw;
+      height: 60vw;
     }
  width: 40vw;
     height: 40vw;
@@ -45,7 +68,6 @@
     animation: reRenderPhoto .4s linear forwards;
   }
 }
-
 
 
 @keyframes reRenderPhoto {
