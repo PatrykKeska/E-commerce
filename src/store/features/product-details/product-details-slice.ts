@@ -23,6 +23,9 @@ interface setSizeDetails {
 interface setCapacityDetails {
   payload: string;
 }
+interface setPriceDetails {
+  payload: number;
+}
 
 export const productDetailsSlice = createSlice({
   name: 'productDetails',
@@ -30,6 +33,9 @@ export const productDetailsSlice = createSlice({
   reducers: {
     setProductColor: (state: productDetailsState, action: setColorDetails) => {
       state.color = action.payload;
+    },
+    setProductPrice: (state: productDetailsState, action: setPriceDetails) => {
+      state.price = action.payload;
     },
     setProductSize: (state: productDetailsState, action: setSizeDetails) => {
       state.size = action.payload;
@@ -40,5 +46,5 @@ export const productDetailsSlice = createSlice({
   },
 });
 
-export const { setProductColor, setProductSize, setCapacity } =
+export const { setProductColor, setProductSize, setCapacity, setProductPrice } =
   productDetailsSlice.actions;
