@@ -1,12 +1,12 @@
 export interface Props {
-    useParams? : any
+  useParams?: any;
 }
 
 export interface State {
-    name: string,
-    brand: string,
-    colors: string[] | null
-    sizes: string[] | null,
-    gallery: string[],
-    description: string,
+  name: string;
+  brand: string;
+  colors: string[] | null;
+  sizes: string[] | null;
+  gallery: string[];
+  description: string;
 }

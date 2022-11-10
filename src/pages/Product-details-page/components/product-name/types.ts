@@ -1,4 +1,4 @@
-export interface Props{
-    name: string;
-    brand?: boolean
+export interface Props {
+  name: string;
+  brand?: boolean;
 }
