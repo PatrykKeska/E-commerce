@@ -12,6 +12,12 @@ class SizePicker extends Component<SizePickerProps, State> {
     const { dispatch } = this.props;
     dispatch(setProductSize(e.target.value));
   };
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(setProductSize(''));
+  }
+
   render() {
     const { attributes, selector } = this.props;
     const { checked } = this.state;
