@@ -1,7 +1,5 @@
 import { client } from '../setup/ApolloClient';
 import { gql } from '@apollo/client';
-import { useDispatch } from 'react-redux';
-import { setProductPrice } from '../store/features/product-details/product-details-slice';
 
 const getProductDetails = async (productID: string) => {
   return await client.query({

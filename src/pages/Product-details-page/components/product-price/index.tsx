@@ -9,15 +9,14 @@ class ProductPrice extends Component<Props> {
     return prices.toString().slice(1, prices.toString().length);
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>) {
+  componentDidUpdate(prevProps: Readonly<Props>) {
     (async () => {
-      const { price, currency, dispatch, selector } = this.props;
+      const { price, currency, dispatch } = this.props;
       if (prevProps !== this.props) {
         const values = await getProductPrice(price, currency.value);
         if (typeof values !== 'undefined') {
           dispatch(setProductPrice(values.amount));
         }
-        console.log(selector);
       }
     })();
   }

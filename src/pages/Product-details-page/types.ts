@@ -1,5 +1,5 @@
 export interface Props {
-  useParams?: any;
+  useParams?: { id: string };
 }
 
 export interface State {
