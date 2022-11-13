@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import './styles.scss';
-class AddCartButton extends Component {
+import { ReduxHOC } from '../../../common/components/ReduxHOC';
+import { addProductToBasket } from '../../../../store/features/basket/basket-slice';
+class CartButton extends Component<any> {
   state = {
     isHover: false,
   };
@@ -15,11 +17,18 @@ class AddCartButton extends Component {
       isHover: false,
     });
   };
+
+  handleState = () => {
+    const { selector, dispatch, basketSelector } = this.props;
+    dispatch(addProductToBasket(selector));
+    console.log(selector, basketSelector);
+  };
   render() {
     const { isHover } = this.state;
     return (
       <>
         <button
+          onClick={this.handleState}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           className={`add-to-cart-btn ${isHover ? 'active-btn' : ''} `}
@@ -30,5 +39,5 @@ class AddCartButton extends Component {
     );
   }
 }
-
+const AddCartButton = ReduxHOC(CartButton);
 export { AddCartButton };

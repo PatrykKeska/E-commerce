@@ -42,23 +42,22 @@ class ProductImage extends Component<Props, State> {
             />
           ))}
         </section>
-        {
-          attributes.length > 1 &&
-        <div>
-          <button
+        {attributes.length > 1 && (
+          <div>
+            <button
               className="product-image-wrapper__button"
               onClick={() => this.handleScroll('left')}
-          >
-            <LeftArrow/>
-          </button>
-          <button
+            >
+              <LeftArrow />
+            </button>
+            <button
               className="product-image-wrapper__button"
               onClick={() => this.handleScroll('right')}
-          >
-            <RightArrow/>
-          </button>
-        </div>
-        }
+            >
+              <RightArrow />
+            </button>
+          </div>
+        )}
         <img
           key={mainPhoto}
           className="product-image-wrapper__main-photo"

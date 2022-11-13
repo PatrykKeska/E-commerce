@@ -7,23 +7,23 @@ export interface productDetailsState {
   allPrices: [];
   name: string;
   brand: string;
-  id:string;
+  id: string;
   gallery: string[];
-  allColors?:[],
-  allSizes?:[],
+  allColors?: [];
+  allSizes?: [];
 }
 
 const initialState: productDetailsState = {
   size: '',
   color: '',
   price: 0,
-  name:'',
-  brand:'',
-  id:'',
-  gallery:[],
-  allPrices:[],
-  allColors:[],
-  allSizes:[],
+  name: '',
+  brand: '',
+  id: '',
+  gallery: [],
+  allPrices: [],
+  allColors: [],
+  allSizes: [],
 };
 
 interface setColorDetails {
@@ -39,27 +39,26 @@ interface setPriceDetails {
   payload: number;
 }
 interface setNameDetails {
-  payload: string
-}
-interface setBrandDetails {
-  payload: string
-}
-interface setIdDetails{
   payload: string;
 }
-interface setGalleryDetails{
+interface setBrandDetails {
+  payload: string;
+}
+interface setIdDetails {
+  payload: string;
+}
+interface setGalleryDetails {
   payload: string[];
 }
-interface setAllPrices{
+interface setAllPrices {
   payload: [];
 }
 interface setAllColors {
-  payload :[]
-};
-interface setAllSizes {
-  payload :[]
+  payload: [];
 }
-
+interface setAllSizes {
+  payload: [];
+}
 
 export const productDetailsSlice = createSlice({
   name: 'productDetails',
@@ -84,7 +83,10 @@ export const productDetailsSlice = createSlice({
     setProductId: (state: productDetailsState, action: setIdDetails) => {
       state.id = action.payload;
     },
-    setProductGallery: (state: productDetailsState, action: setGalleryDetails) => {
+    setProductGallery: (
+      state: productDetailsState,
+      action: setGalleryDetails,
+    ) => {
       state.gallery = action.payload;
     },
     setProductAllPrices: (state: productDetailsState, action: setAllPrices) => {
@@ -99,5 +101,15 @@ export const productDetailsSlice = createSlice({
   },
 });
 
-export const { setProductColor, setProductSize, setProductPrice,setProductName,setProductId,setBrandName, setProductGallery, setProductAllPrices, setProductAllColors, setProductAllSizes } =
-  productDetailsSlice.actions;
+export const {
+  setProductColor,
+  setProductSize,
+  setProductPrice,
+  setProductName,
+  setProductId,
+  setBrandName,
+  setProductGallery,
+  setProductAllPrices,
+  setProductAllColors,
+  setProductAllSizes,
+} = productDetailsSlice.actions;

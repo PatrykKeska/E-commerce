@@ -12,9 +12,13 @@ import { Props, State } from './types';
 import { getProductDetails } from '../../Api/getProductDetails';
 import { ProductImageComponent } from './components/product-image';
 import {
-  setBrandName, setProductAllColors, setProductAllPrices, setProductAllSizes,
+  setBrandName,
+  setProductAllColors,
+  setProductAllPrices,
+  setProductAllSizes,
   setProductGallery,
-  setProductId, setProductName
+  setProductId,
+  setProductName,
 } from '../../store/features/product-details/product-details-slice';
 class ProductDetailsPage extends Component<Props, State> {
   state: State = {
@@ -28,31 +32,31 @@ class ProductDetailsPage extends Component<Props, State> {
   };
   componentDidMount() {
     (async () => {
-      const { useParams, dispatch} = this.props;
+      const { useParams, dispatch } = this.props;
       const { data } = await getProductDetails(useParams.id);
-      dispatch(setProductId(useParams.id))
-      dispatch(setProductGallery(this.state.gallery))
+      dispatch(setProductId(useParams.id));
+      dispatch(setProductGallery(this.state.gallery));
       const availableAttributes = await data.product.attributes;
       availableAttributes.map((attribute) => {
         if (attribute.name === 'Color') {
           const colors = attribute.items.map((attr) => attr.value);
-          dispatch(setProductAllColors(colors))
+          dispatch(setProductAllColors(colors));
           this.setState({
             colors,
           });
         }
         if (attribute.name === 'Size' || attribute.name === 'Capacity') {
           const sizes = attribute.items.map((attr) => attr.value);
-          dispatch(setProductAllSizes(sizes))
+          dispatch(setProductAllSizes(sizes));
           this.setState({
             sizes,
           });
         }
-      })
+      });
       dispatch(setProductGallery(data.product.gallery));
       dispatch(setProductName(data.product.name));
       dispatch(setBrandName(data.product.brand));
-      dispatch(setProductAllPrices(data.product.prices))
+      dispatch(setProductAllPrices(data.product.prices));
       this.setState({
         gallery: data.product.gallery,
         name: data.product.name,
@@ -64,7 +68,7 @@ class ProductDetailsPage extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    const { dispatch} = this.props;
+    const { dispatch } = this.props;
 
     this.setState({
       name: '',
@@ -74,11 +78,11 @@ class ProductDetailsPage extends Component<Props, State> {
       gallery: [],
       description: '',
     });
-    dispatch(setProductId(''))
+    dispatch(setProductId(''));
     dispatch(setProductGallery([]));
     dispatch(setProductName(''));
     dispatch(setBrandName(''));
-    dispatch(setProductAllPrices([]))
+    dispatch(setProductAllPrices([]));
   }
 
   render() {

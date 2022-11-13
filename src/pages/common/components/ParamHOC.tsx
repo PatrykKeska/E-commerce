@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
 const ParamHoc = (Component: React.ComponentType) => {
   return function HocWithHook(rest) {
