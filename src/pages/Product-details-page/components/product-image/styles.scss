@@ -22,7 +22,7 @@
   &__preview{
     @media(max-width: 700px){
       overflow: scroll;
-      width: 70vw;
+      width: 60vw;
       @include flex.flexCenterRow;
       position: relative;
       &::-webkit-scrollbar {
