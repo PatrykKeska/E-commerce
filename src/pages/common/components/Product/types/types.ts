@@ -7,7 +7,7 @@ export interface ProductProps {
   currency: string;
   prices: number;
   category: string;
-  navigate: any;
+  navigate: (arg: string) => void;
 }
 
 export interface State {

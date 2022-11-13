@@ -5,7 +5,7 @@ export interface SingleProduct {
   gallery: string[];
   currency: string;
   category: string;
-  prices: any;
+  prices: number[];
 }
 
 export interface State {
@@ -27,7 +27,7 @@ export interface ApiProduct {
   id: string;
   inStock: boolean;
   gallery: string[];
-  prices: any;
+  prices: [];
 }
 
 export interface Props {

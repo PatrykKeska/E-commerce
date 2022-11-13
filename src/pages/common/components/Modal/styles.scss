@@ -1,0 +1,39 @@
+@use './src/globalStyles/mixins/flex';
+.response-modal{
+  @include flex.flexCenterColumn;
+  width: 100vw;
+  height: 50vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: rgba(0,0,0,.7);
+  z-index: 10;
+  @media(max-width: 700px){
+    top: 120%;
+    height: 50vh;
+  }
+  &__tittle{
+ color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 30px;
+  }
+
+  &__message{
+    color: white;
+    font-weight: 400;
+    font-size: 20px;
+    text-transform: uppercase;
+
+  }
+
+  &__button{
+ border: none;
+    padding: 10px 30px;
+    margin: 10px;
+    background-color: #5ECE7B;
+    color: white;
+    border-radius: 5px;
+  }
+}

@@ -4,42 +4,116 @@ import { AddCartButton } from './components/add-to-cart-button';
 import { ColorPickerComponent } from './components/color-picker';
 import { SizePickerComponent } from './components/size-picker';
 import { ProductPriceComponent } from './components/product-price';
-import { ProductImage } from './components/product-image';
 import { ProductDescription } from './components/product-description/product-description';
 import './styles.scss';
-import {ProductName} from './components/product-name';
-class ProductDetailsPage extends Component {
-  state = {
-    name: 'PlayStation 5',
-    colors: ['crimson', 'blue', 'green', 'yellow'],
-    sizes: ['s', 'm', 'l', 'xl'],
-    gallery: [
-      'https://images-na.ssl-images-amazon.com/images/I/510VSJ9mWDL._SL1262_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/610%2B69ZsKCL._SL1500_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/51iPoFwQT3L._SL1230_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/61qbqFcvoNL._SL1500_.jpg',
-      'https://images-na.ssl-images-amazon.com/images/I/51HCjA3rqYL._SL1230_.jpg',
-    ],
-    description:
-      'A good gaming console. Plays games of PS4! Enjoy if you can buy it mwahahahaha',
+import { ProductName } from './components/product-name';
+import { ParamHoc } from '../common/components/ParamHOC';
+import { Props, State } from './types';
+import { getProductDetails } from '../../Api/getProductDetails';
+import { ProductImageComponent } from './components/product-image';
+import {
+  setBrandName,
+  setProductAllColors,
+  setProductAllPrices,
+  setProductAllSizes,
+  setProductGallery,
+  setProductId,
+  setProductName,
+  setProductStock,
+} from '../../store/features/product-details/product-details-slice';
+import { Modal } from '../common/components/Modal';
+class ProductDetailsPage extends Component<Props, State> {
+  state: State = {
+    name: '',
+    brand: '',
+    colors: null,
+    sizes: null,
+    gallery: [],
+    description: '',
+    price: [],
   };
+  componentDidMount() {
+    (async () => {
+      const { useParams, dispatch } = this.props;
+      const { data } = await getProductDetails(useParams.id);
+      dispatch(setProductId(useParams.id));
+      dispatch(setProductStock(data.product.inStock));
+      dispatch(setProductGallery(this.state.gallery));
+      const availableAttributes = await data.product.attributes;
+      availableAttributes.map((attribute) => {
+        if (attribute.name === 'Color') {
+          const colors = attribute.items.map((attr) => attr.value);
+          dispatch(setProductAllColors(colors));
+          this.setState({
+            colors,
+          });
+        }
+        if (attribute.name === 'Size' || attribute.name === 'Capacity') {
+          const sizes = attribute.items.map((attr) => attr.value);
+          dispatch(setProductAllSizes(sizes));
+          this.setState({
+            sizes,
+          });
+        }
+      });
+      dispatch(setProductGallery(data.product.gallery));
+      dispatch(setProductName(data.product.name));
+      dispatch(setBrandName(data.product.brand));
+      dispatch(setProductAllPrices(data.product.prices));
+      this.setState({
+        gallery: data.product.gallery,
+        name: data.product.name,
+        brand: data.product.brand,
+        description: data.product.description,
+        price: data.product.prices,
+      });
+    })();
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+
+    this.setState({
+      name: '',
+      brand: '',
+      colors: null,
+      sizes: null,
+      gallery: [],
+      description: '',
+    });
+    dispatch(setProductId(''));
+    dispatch(setProductAllColors([]));
+    dispatch(setProductAllSizes([]));
+    dispatch(setProductGallery([]));
+    dispatch(setProductName(''));
+    dispatch(setBrandName(''));
+    dispatch(setProductAllPrices([]));
+    dispatch(setProductStock(false));
+  }
+
   render() {
-    const { colors, sizes, gallery, description, name } = this.state;
+    const { colors, sizes, gallery, description, name, brand, price } =
+      this.state;
     return (
       <>
         <Nav />
         <section className="product-details-main-wrapper">
+          <Modal/>
           <section className="product-details-main-wrapper__left-column">
-            <ProductImage
+            <ProductImageComponent
               name={name}
               attributes={gallery}
             />
           </section>
           <section className="product-details-main-wrapper__right-column">
-            <ProductName name={name}/>
-            <SizePickerComponent attributes={sizes} />
-            <ColorPickerComponent attributes={colors} />
-            <ProductPriceComponent />
+            <ProductName
+              brand
+              name={brand}
+            />
+            <ProductName name={name} />
+            {sizes && <SizePickerComponent attributes={sizes} />}
+            {colors && <ColorPickerComponent attributes={colors} />}
+            <ProductPriceComponent price={price} />
             <AddCartButton />
             <ProductDescription attributes={description} />
           </section>
@@ -48,5 +122,5 @@ class ProductDetailsPage extends Component {
     );
   }
 }
-
-export { ProductDetailsPage };
+const ProductDetails = ParamHoc(ProductDetailsPage);
+export { ProductDetails };
