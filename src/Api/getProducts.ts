@@ -34,7 +34,16 @@ const getProducts = async (category: string) => {
   });
 };
 
-const filterCurrency = async (products: any, currency: string) => {
+interface Product {
+  data: {
+    category: {
+      name: string;
+      products;
+    };
+    products: ApiProduct[];
+  };
+}
+const filterCurrency = async (products: Product, currency: string) => {
   return await products.data.category.products.map((prod: ApiProduct) => {
     const productObj: ApiProduct = {
       ...prod,

@@ -9,7 +9,7 @@
   @include flex.flexCenterRow;
   align-items: flex-start;
   padding: 100px 50px;
-  gap: 100px;
+  gap: 5%;
 
   &__left-column{
     width: 60%;
@@ -18,12 +18,13 @@
   }
   &__right-column{
     @media(max-width: 700px){
+      left: 90vw;
       align-self: flex-start;
     }
     @include flex.flexCenterColumn;
     align-items: flex-start;
     gap: 20px;
-    width: 40%;
+    width: 40vw;
     padding: 10px;
   }
 }

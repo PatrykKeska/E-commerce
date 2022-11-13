@@ -1,17 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface productDetailsState {
-  size: string;
-  color: string;
+  size?: string;
+  color?: string;
   price: number;
-  capacity: string;
+  allPrices: [];
+  name: string;
+  brand: string;
+  id: string;
+  gallery: string[];
+  allColors?: [];
+  allSizes?: [];
+  inStock: boolean;
 }
 
 const initialState: productDetailsState = {
   size: '',
   color: '',
   price: 0,
-  capacity: '',
+  name: '',
+  brand: '',
+  id: '',
+  gallery: [],
+  allPrices: [],
+  allColors: [],
+  allSizes: [],
+  inStock: false,
 };
 
 interface setColorDetails {
@@ -20,8 +34,32 @@ interface setColorDetails {
 interface setSizeDetails {
   payload: string;
 }
-interface setCapacityDetails {
+interface setPriceDetails {
+  payload: number;
+}
+interface setNameDetails {
   payload: string;
+}
+interface setBrandDetails {
+  payload: string;
+}
+interface setIdDetails {
+  payload: string;
+}
+interface setGalleryDetails {
+  payload: string[];
+}
+interface setAllPrices {
+  payload: [];
+}
+interface setAllColors {
+  payload: [];
+}
+interface setAllSizes {
+  payload: [];
+}
+interface setStock {
+  payload: boolean;
 }
 
 export const productDetailsSlice = createSlice({
@@ -31,14 +69,53 @@ export const productDetailsSlice = createSlice({
     setProductColor: (state: productDetailsState, action: setColorDetails) => {
       state.color = action.payload;
     },
+    setProductPrice: (state: productDetailsState, action: setPriceDetails) => {
+      state.price = action.payload;
+    },
     setProductSize: (state: productDetailsState, action: setSizeDetails) => {
       state.size = action.payload;
     },
-    setCapacity: (state: productDetailsState, action: setCapacityDetails) => {
-      state.capacity = action.payload;
+
+    setProductName: (state: productDetailsState, action: setNameDetails) => {
+      state.name = action.payload;
+    },
+    setBrandName: (state: productDetailsState, action: setBrandDetails) => {
+      state.brand = action.payload;
+    },
+    setProductId: (state: productDetailsState, action: setIdDetails) => {
+      state.id = action.payload;
+    },
+    setProductGallery: (
+      state: productDetailsState,
+      action: setGalleryDetails,
+    ) => {
+      state.gallery = action.payload;
+    },
+    setProductAllPrices: (state: productDetailsState, action: setAllPrices) => {
+      state.allPrices = [...action.payload];
+    },
+    setProductAllColors: (state: productDetailsState, action: setAllColors) => {
+      state.allColors = [...action.payload];
+    },
+    setProductAllSizes: (state: productDetailsState, action: setAllSizes) => {
+      state.allSizes = [...action.payload];
+    },
+    setProductStock: (state: productDetailsState, action: setStock) => {
+      state.inStock = action.payload;
     },
   },
 });
 
-export const { setProductColor, setProductSize, setCapacity } =
-  productDetailsSlice.actions;
+export const {
+  setProductColor,
+  setProductSize,
+  setProductPrice,
+  setProductName,
+  setProductId,
+  setBrandName,
+  setProductGallery,
+  setProductAllPrices,
+  setProductAllColors,
+  setProductAllSizes,
+  setProductStock,
+} = productDetailsSlice.actions;
