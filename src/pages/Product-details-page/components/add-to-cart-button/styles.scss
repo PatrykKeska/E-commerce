@@ -29,6 +29,11 @@ position: relative;
 
 }
 
+.btn-disabled{
+  opacity: .6;
+  background-color: crimson;
+}
+
 
 
 @keyframes showUpBorder {

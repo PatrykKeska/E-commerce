@@ -19,7 +19,9 @@ import {
   setProductGallery,
   setProductId,
   setProductName,
+  setProductStock,
 } from '../../store/features/product-details/product-details-slice';
+import { Modal } from '../common/components/Modal';
 class ProductDetailsPage extends Component<Props, State> {
   state: State = {
     name: '',
@@ -35,6 +37,7 @@ class ProductDetailsPage extends Component<Props, State> {
       const { useParams, dispatch } = this.props;
       const { data } = await getProductDetails(useParams.id);
       dispatch(setProductId(useParams.id));
+      dispatch(setProductStock(data.product.inStock));
       dispatch(setProductGallery(this.state.gallery));
       const availableAttributes = await data.product.attributes;
       availableAttributes.map((attribute) => {
@@ -79,10 +82,13 @@ class ProductDetailsPage extends Component<Props, State> {
       description: '',
     });
     dispatch(setProductId(''));
+    dispatch(setProductAllColors([]));
+    dispatch(setProductAllSizes([]));
     dispatch(setProductGallery([]));
     dispatch(setProductName(''));
     dispatch(setBrandName(''));
     dispatch(setProductAllPrices([]));
+    dispatch(setProductStock(false));
   }
 
   render() {
@@ -92,6 +98,7 @@ class ProductDetailsPage extends Component<Props, State> {
       <>
         <Nav />
         <section className="product-details-main-wrapper">
+          <Modal/>
           <section className="product-details-main-wrapper__left-column">
             <ProductImageComponent
               name={name}

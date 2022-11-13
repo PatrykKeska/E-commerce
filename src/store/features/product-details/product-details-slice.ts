@@ -11,6 +11,7 @@ export interface productDetailsState {
   gallery: string[];
   allColors?: [];
   allSizes?: [];
+  inStock: boolean;
 }
 
 const initialState: productDetailsState = {
@@ -24,15 +25,13 @@ const initialState: productDetailsState = {
   allPrices: [],
   allColors: [],
   allSizes: [],
+  inStock: false,
 };
 
 interface setColorDetails {
   payload: string;
 }
 interface setSizeDetails {
-  payload: string;
-}
-interface setCapacityDetails {
   payload: string;
 }
 interface setPriceDetails {
@@ -58,6 +57,9 @@ interface setAllColors {
 }
 interface setAllSizes {
   payload: [];
+}
+interface setStock {
+  payload: boolean;
 }
 
 export const productDetailsSlice = createSlice({
@@ -98,6 +100,9 @@ export const productDetailsSlice = createSlice({
     setProductAllSizes: (state: productDetailsState, action: setAllSizes) => {
       state.allSizes = [...action.payload];
     },
+    setProductStock: (state: productDetailsState, action: setStock) => {
+      state.inStock = action.payload;
+    },
   },
 });
 
@@ -112,4 +117,5 @@ export const {
   setProductAllPrices,
   setProductAllColors,
   setProductAllSizes,
+  setProductStock,
 } = productDetailsSlice.actions;
