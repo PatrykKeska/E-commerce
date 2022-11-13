@@ -11,6 +11,7 @@ const ReduxHOC = (Component: React.ComponentType<Props>) => {
   return function hooks(props) {
     const dispatch = useDispatch();
     const selector = useSelector((store: RootState) => store.productDetails);
+    const basketSelector = useSelector((store:RootState)=> store.basket)
     const currency = useSelector((store: RootState) => store.currency);
 
     return (
@@ -19,6 +20,7 @@ const ReduxHOC = (Component: React.ComponentType<Props>) => {
         dispatch={dispatch}
         selector={selector}
         currency={currency}
+        basketSelector = {basketSelector}
       />
     );
   };
