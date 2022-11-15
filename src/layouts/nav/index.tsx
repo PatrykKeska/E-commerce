@@ -14,6 +14,7 @@ export class Nav extends Component {
           <NaviLink name="all" />
           <NaviLink name="clothes" />
           <NaviLink name="tech" />
+          <NaviLink name="cart" />
         </Container>
         <Container center>
           <GreenLogo />

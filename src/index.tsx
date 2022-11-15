@@ -13,13 +13,13 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
+
     <Provider store={store}>
       <ApolloProvider client={client}>
         <RouterProvider router={router} />
       </ApolloProvider>
     </Provider>
-  </React.StrictMode>,
+
 );
 
 // If you want to start measuring performance in your app, pass a function
