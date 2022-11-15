@@ -1,0 +1,42 @@
+@use './src/globalStyles/mixins/flex';
+.cart-wrapper{
+  @include  flex.flexCenterColumn;
+  align-items: flex-start;
+  padding: 50px;
+  &__title{
+    font-weight: 700;
+    font-size: 32px;
+    color: #1D1F22;
+    text-transform: uppercase;
+    margin: 50px 0 ;
+  }
+  &__product-wrapper{
+    padding: 20px;
+    width: 100%;
+    @include flex.flexCenterRow;
+    justify-content: space-between;
+      border-top: 1px solid #E5E5E5;
+
+    &:nth-child(odd){
+    border-bottom: 1px solid #E5E5E5;
+    }
+
+
+    &__left-column{
+@include flex.flexCenterColumn;
+      align-items: flex-start;
+      &__brand{
+        font-weight: 700;
+        color: #1D1F22;
+      }
+      &__name{
+        font-weight: 400;
+        color: #1D1F22;
+      }
+    }
+
+    &__right-column{
+border: 1px solid black;
+    }
+  }
+}
