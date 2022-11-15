@@ -1,26 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-interface ProductInBasket {
-  productName: string;
-  productBrand: string;
-  size?: string;
-  currency?: string;
-  color?: string;
-  price: number;
-  quantity: number;
-  name: string;
-  brand: string;
-  id: string;
-  gallery: string[];
-}
+import { productDetailsState } from '../product-details/product-details-slice';
+type ProductInBasket = productDetailsState;
+
 interface Basket {
   items: Array<ProductInBasket>;
+  totalPrice: number
 }
 const initialState: Basket = {
   items: [],
+  totalPrice: 0
 };
 
 interface putProductToBasket {
   payload: ProductInBasket;
+}
+interface priceInterface {
+  payload: number;
 }
 
 export const BasketSlice = createSlice({
@@ -30,17 +25,13 @@ export const BasketSlice = createSlice({
     addProductToBasket: (state: Basket, action: putProductToBasket) => {
       state.items.push(action.payload);
     },
+    priceAdding: (state: Basket, action: priceInterface) => {
+      state.totalPrice += action.payload
+    },
+    priceSubtract: (state: Basket, action: priceInterface) => {
+      state.totalPrice -= action.payload
+    },
   },
 });
 
-export const { addProductToBasket } = BasketSlice.actions;
-
-// const initialProduct:ProductInBasket = {
-//     productName:'',
-//     productBrand:'',
-//     size:'',
-//     currency:'',
-//     color: '',
-//     price:0,
-//     quantity: 0
-// }
+export const { addProductToBasket, priceAdding, priceSubtract } = BasketSlice.actions;
