@@ -98,7 +98,7 @@ class ProductDetailsPage extends Component<Props, State> {
       <>
         <Nav />
         <section className="product-details-main-wrapper">
-          <Modal/>
+          <Modal />
           <section className="product-details-main-wrapper__left-column">
             <ProductImageComponent
               name={name}
