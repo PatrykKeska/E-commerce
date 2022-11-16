@@ -7,7 +7,8 @@ import {
   setMessage,
   setTitle,
 } from '../../../../store/features/modal/modal-slice';
-class CartButton extends Component<any> {
+import { Props } from './types';
+class CartButton extends Component<Props> {
   state = {
     isHover: false,
   };
@@ -40,7 +41,7 @@ class CartButton extends Component<any> {
       dispatch(addProductToBasket(selector));
       dispatch(openModal());
       dispatch(setTitle('Success'));
-      dispatch(setMessage('Product added to basket!'));
+      dispatch(setMessage('Product added to Cart!'));
     }
   };
   render() {
@@ -57,7 +58,7 @@ class CartButton extends Component<any> {
             !selector.inStock ? 'btn-disabled' : ''
           }`}
         >
-          {selector.inStock ? 'add to cart' : 'out of stock'}
+          {selector.inStock ? 'add to Cart' : 'out of stock'}
         </button>
       </>
     );

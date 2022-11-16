@@ -1,0 +1,26 @@
+@use './src/globalStyles/mixins/flex';
+.cart-size-preview{
+max-width: 300px;
+  &__title{
+    text-transform: uppercase;
+    color: #1D1F22;
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  &__wrapper{
+    @include flex.flexCenterRow;
+    padding: 0;
+    gap: 10px;
+    &__size{
+      border: 1px solid #1D1F22;
+      @include flex.flexCenterRow;
+      width: 4.5vw;
+      height: 3vw;
+    font-size: .8em;
+      min-width: 50px;
+      min-height: 35px;
+      max-width: 63px;
+      max-height: 43px;
+    }
+  }
+}

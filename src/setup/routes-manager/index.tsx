@@ -5,12 +5,14 @@ import AllCategoryPage from '../../pages/AllCategoryPage';
 import TechCategoryPage from '../../pages/TechCategoryPage';
 import ClothesCategoryPage from '../../pages/ClothesCategoryPage';
 import { ProductDetails } from '../../pages/Product-details-page';
+import { CartPage } from '../../pages/Cart/components/cart-wrapper';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <MainPage />,
   },
+  { path: '/cart', element: <CartPage /> },
   { path: '/all', element: <AllCategoryPage /> },
   { path: '/all/:id', element: <ProductDetails /> },
   { path: '/clothes/', element: <ClothesCategoryPage /> },
