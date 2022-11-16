@@ -1,16 +1,15 @@
-import {Dispatch} from 'redux';
+import { Dispatch } from 'redux';
 
 interface SinglePriceObject {
-    amount: number;
-    currency: {
-        label: string,
-        symbol: string,
-    }
-
+  amount: number;
+  currency: {
+    label: string;
+    symbol: string;
+  };
 }
 
 export interface Props {
-    allPrices: SinglePriceObject[];
-    currency: {value:string};
-    dispatch: Dispatch
+  allPrices: SinglePriceObject[];
+  currency: { value: string };
+  dispatch: Dispatch;
 }

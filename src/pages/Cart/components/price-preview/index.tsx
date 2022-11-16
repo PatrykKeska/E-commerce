@@ -1,8 +1,7 @@
 import { Component } from 'react';
-import './styles.scss'
-import {Props} from './types';
-import {priceAdding} from '../../../../store/features/basket/basket-slice';
-import {ReduxHOC} from '../../../common/components/ReduxHOC';
+import './styles.scss';
+import { Props } from './types';
+import { ReduxHOC } from '../../../common/components/ReduxHOC';
 class Price extends Component<Props> {
   state = {
     value: '',
@@ -10,8 +9,8 @@ class Price extends Component<Props> {
     amount: 0,
   };
   componentDidMount() {
-      const { currency, allPrices, dispatch } = this.props;
-     (async () => {
+    const { currency, allPrices, dispatch } = this.props;
+    (async () => {
       const pickedPrice = allPrices.filter(
         (singlePrice) => singlePrice.currency.symbol === currency.value,
       );
@@ -20,7 +19,6 @@ class Price extends Component<Props> {
         amount: pickedPrice[0].amount,
       });
     })();
-
   }
 
   render() {
@@ -36,5 +34,5 @@ class Price extends Component<Props> {
     );
   }
 }
-const PricePreview = ReduxHOC(Price)
+const PricePreview = ReduxHOC(Price);
 export { PricePreview };

@@ -4,11 +4,11 @@ type ProductInBasket = productDetailsState;
 
 interface Basket {
   items: Array<ProductInBasket>;
-  totalPrice: number
+  totalPrice: number;
 }
 const initialState: Basket = {
   items: [],
-  totalPrice: 0
+  totalPrice: 0,
 };
 
 interface putProductToBasket {
@@ -26,12 +26,13 @@ export const BasketSlice = createSlice({
       state.items.push(action.payload);
     },
     priceAdding: (state: Basket, action: priceInterface) => {
-      state.totalPrice += action.payload
+      state.totalPrice += action.payload;
     },
     priceSubtract: (state: Basket, action: priceInterface) => {
-      state.totalPrice -= action.payload
+      state.totalPrice -= action.payload;
     },
   },
 });
 
-export const { addProductToBasket, priceAdding, priceSubtract } = BasketSlice.actions;
+export const { addProductToBasket, priceAdding, priceSubtract } =
+  BasketSlice.actions;
