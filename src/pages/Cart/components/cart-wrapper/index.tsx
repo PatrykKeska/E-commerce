@@ -4,60 +4,54 @@ import { BasketColorPreview } from '../cart-color-preview';
 import { BasketSizePreview } from '../cart-size-preview';
 import './styles.scss';
 import { PricePreview } from '../price-preview';
-import {Nav} from '../../../../layouts/nav';
+import { Nav } from '../../../../layouts/nav';
 class CartWrapper extends Component<any> {
   state = {
     total: 0,
+    tax: 0
   };
-  componentDidMount() {
-    const { basketSelector, currency, dispatch } = this.props;
 
-    const data = basketSelector.items.map((item) => {
+  getPickedCurrencyPrices = (items, currency)=> {
+    const data = items.map((item) => {
       const values = item.allPrices.filter(
-        (singlePrice) => singlePrice.currency.symbol === currency.value,
+          (singlePrice) => singlePrice.currency.symbol === currency.value,
       );
       return values[0];
     });
     data.map((item) =>
-      this.setState((prev: any) => ({ total: prev.total + item.amount })),
+        this.setState((prev: any) => ({ total: prev.total + item.amount, tax: (prev.total + item.amount) * 0.21})),
     );
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<any>,
-    prevState: Readonly<{}>,
-    snapshot?: any,
-  ) {
-    const {basketSelector, currency} = this.props
-    if(prevProps.currency !== this.props.currency){
-      this.setState({
-        total: 0
-      })
-      const data = basketSelector.items.map((item) => {
-        const values = item.allPrices.filter(
-            (singlePrice) => singlePrice.currency.symbol === currency.value,
-        );
-        return values[0];
-      });
-      data.map((item) =>
-          this.setState((prev: any) => ({ total: prev.total + item.amount })),
-      );
-    }
+  componentDidMount() {
+    const { basketSelector, currency } = this.props;
+    const {items} = basketSelector
+    this.getPickedCurrencyPrices(items, currency)
   }
 
+  componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<{}>) {
+    const { basketSelector, currency } = this.props;
+      const {items} = basketSelector
+    if (prevProps.currency !== this.props.currency) {
+      this.setState({
+        total: 0,
+        tax:0,
+      });
+      this.getPickedCurrencyPrices(items, currency)
+    }
+  }
   render() {
     const { basketSelector, currency, dispatch } = this.props;
-    const { total } = this.state;
-    console.log(basketSelector, total);
+    const { total, tax } = this.state;
     return (
       <>
         <Nav />
         <section className="cart-wrapper">
           <h2 className="cart-wrapper__title">cart</h2>
 
-          {basketSelector.items.map((item) => (
+          {basketSelector.items.map((item,index) => (
             <div
-              key={Math.random()}
+              key={index}
               className="cart-wrapper__product-wrapper"
             >
               <section className="cart-wrapper__product-wrapper__left-column">
@@ -89,8 +83,27 @@ class CartWrapper extends Component<any> {
               </section>
             </div>
           ))}
-          <p>quantity : {basketSelector.items.length}</p>
-          <p>total price : {total}</p>
+          <section className="cart-wrapper__summary">
+            <p className="cart-wrapper__summary__description">
+              Tax 21%:
+              <span className="cart-wrapper__summary__description__span">
+                {currency.value}{tax.toFixed(2)}
+              </span>
+            </p>
+            <p className="cart-wrapper__summary__description">
+              Quantity:
+              <span className="cart-wrapper__summary__description__span">
+                {basketSelector.items.length}
+              </span>
+            </p>
+            <p className="cart-wrapper__summary__description">
+              Total:
+              <span className="cart-wrapper__summary__description__span">
+                {currency.value}
+                {total.toFixed(2)}
+              </span>
+            </p>
+          </section>
         </section>
       </>
     );
