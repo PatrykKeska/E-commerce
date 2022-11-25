@@ -3,6 +3,7 @@ import './styles.scss';
 import { ReduxHOC } from '../../../common/components/ReduxHOC';
 import {
   addProductToBasket,
+  setBasketQuantity,
   updateBasket,
 } from '../../../../store/features/basket/basket-slice';
 import {
