@@ -117,99 +117,111 @@ class CartWrapper extends Component<any> {
 
   render() {
     const { basketSelector, currency } = this.props;
+    const { isOpen, quantity } = basketSelector;
     return (
       <>
-        <Nav />
-        <section className='cart-wrapper'>
+        {isOpen && ( <>
+        <Nav/>
+          <section className={`${isOpen ? 'cart-wrapper-mini' : 'cart-wrapper'}`}>
+        {isOpen ? (
+          <h2 className='cart-wrapper-mini__title--mini'>
+            My Bag,
+          <span className='cart-wrapper-mini__title--mini__span'>{quantity} items</span>
+          </h2>
+          ) : (
           <h2 className='cart-wrapper__title'>cart</h2>
+          )}
 
-          {basketSelector.items.map((item, index) => (
-            <div
-              key={index}
-              className='cart-wrapper__product-wrapper'
-            >
-              <section className='cart-wrapper__product-wrapper__left-column'>
-                <h3 className='cart-wrapper__product-wrapper__left-column__brand'>
-                  {item.brand}
-                </h3>
-                <h3 className='cart-wrapper__product-wrapper__left-column__name'>
-                  {item.name}
-                </h3>
-                <PricePreview
-                  currency={currency}
-                  allPrices={item.allPrices}
-                />
-                {item.allColors.length > 1 && (
-                  <BasketColorPreview
-                    pickedColor={item.color}
-                    attributes={item.allColors}
-                  />
-                )}
-                {item.allSizes.length > 1 && (
-                  <BasketSizePreview
-                    attributes={item.allSizes}
-                    pickedSize={item.size}
-                  />
-                )}
-              </section>
-              <section className='cart-wrapper__product-wrapper__right-column'>
-                <section className='cart-wrapper__product-wrapper__right-column__quantity'>
-                  <button
-                    className='cart-wrapper__product-wrapper__right-column__quantity__button'
-                    onClick={() => this.handleQuantity(index, '+')}
-                  >
-                    <PlusIcon />
-                  </button>
-                  <p className='cart-wrapper__product-wrapper__right-column__quantity__value'>
-                    {item.quantity}
-                  </p>
-                  {item.quantity < 2 ? (
-                    <button
-                      className='cart-wrapper__product-wrapper__right-column__quantity__button'
-                      onClick={() => this.removeItemFromCart(index)}
-                    >
-                      <MinusIcon />
-                    </button>
-                  ) : (
-                    <button
-                      className='cart-wrapper__product-wrapper__right-column__quantity__button'
-                      onClick={() => this.handleQuantity(index, '-')}
-                    >
-                      <MinusIcon />
-                    </button>
-                  )}
-                </section>
-                <CartImgPreview gallery={item.gallery} />
-              </section>
-            </div>
+        {basketSelector.items.map((item, index) => (
+          <div
+          key={index}
+          className='cart-wrapper__product-wrapper'
+          >
+          <section className='cart-wrapper__product-wrapper__left-column'>
+          <h3 className='cart-wrapper__product-wrapper__left-column__brand'>
+        {item.brand}
+          </h3>
+          <h3 className='cart-wrapper__product-wrapper__left-column__name'>
+        {item.name}
+          </h3>
+          <PricePreview
+          currency={currency}
+          allPrices={item.allPrices}
+          />
+        {item.allColors.length > 1 && (
+          <BasketColorPreview
+          pickedColor={item.color}
+          attributes={item.allColors}
+          />
+          )}
+        {item.allSizes.length > 1 && (
+          <BasketSizePreview
+          attributes={item.allSizes}
+          pickedSize={item.size}
+          />
+          )}
+          </section>
+          <section className='cart-wrapper__product-wrapper__right-column'>
+          <section className='cart-wrapper__product-wrapper__right-column__quantity'>
+          <button
+          className='cart-wrapper__product-wrapper__right-column__quantity__button'
+          onClick={() => this.handleQuantity(index, '+')}
+          >
+          <PlusIcon />
+          </button>
+          <p className='cart-wrapper__product-wrapper__right-column__quantity__value'>
+        {item.quantity}
+          </p>
+        {item.quantity < 2 ? (
+          <button
+          className='cart-wrapper__product-wrapper__right-column__quantity__button'
+          onClick={() => this.removeItemFromCart(index)}
+          >
+          <MinusIcon />
+          </button>
+          ) : (
+          <button
+          className='cart-wrapper__product-wrapper__right-column__quantity__button'
+          onClick={() => this.handleQuantity(index, '-')}
+          >
+          <MinusIcon />
+          </button>
+          )}
+          </section>
+          <CartImgPreview gallery={item.gallery} />
+          </section>
+          </div>
           ))}
           <section className='cart-wrapper__summary'>
+            {!isOpen && <>
             <p className='cart-wrapper__summary__description'>
               Tax 21%:
               <span className='cart-wrapper__summary__description__span'>
-                {currency.value}
+        {currency.value}
                 {basketSelector.tax.toFixed(2)}
-              </span>
+          </span>
             </p>
-            <p className='cart-wrapper__summary__description'>
+              <p className='cart-wrapper__summary__description'>
               Quantity:
               <span className='cart-wrapper__summary__description__span'>
-                {basketSelector.quantity}
+            {basketSelector.quantity}
               </span>
-            </p>
-            <p className='cart-wrapper__summary__description'>
-              Total:
-              <span className='cart-wrapper__summary__description__span'>
-                {currency.value}
-                {/* {total.toFixed(2)}*/}
-                {basketSelector.totalPrice.toFixed(2)}
-              </span>
-            </p>
-            <button className='cart-wrapper__summary__description__order-btn'>
-              order
-            </button>
+              </p>
+            </>
+            }
+          <p className='cart-wrapper__summary__description'>
+          Total:
+          <span className='cart-wrapper__summary__description__span'>
+        {currency.value}
+        {basketSelector.totalPrice.toFixed(2)}
+          </span>
+          </p>
+          <button className='cart-wrapper__summary__description__order-btn'>
+          order
+          </button>
           </section>
-        </section>
+          </section>
+        </>  )}
       </>
     );
   }
