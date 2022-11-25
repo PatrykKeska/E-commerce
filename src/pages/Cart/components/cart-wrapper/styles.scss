@@ -5,6 +5,7 @@
   padding: 50px 80px;
 
 
+
   &__title{
     font-weight: 700;
     font-size: 32px;
@@ -15,6 +16,11 @@
 
 
   &__product-wrapper{
+    @media(max-width: 700px){
+      @include flex.flexCenterColumn;
+      flex-direction: column-reverse;
+      gap: 50px;
+    }
     width: 100%;
     min-height: 250px;
     @include flex.flexCenterRow;
@@ -34,7 +40,13 @@
 
 
 
+
     &__left-column{
+@media(max-width: 700px){
+  align-items: center;
+  max-width: 80%;
+}
+      max-width: 50%;
 @include flex.flexCenterColumn;
       align-items: flex-start;
       &__brand{
@@ -48,7 +60,35 @@
     }
 
     &__right-column{
-border: 1px solid black;
+      @include flex.flexCenterRow;
+      gap: 10px;
+      @media(max-width: 700px){
+        align-items: center;
+        max-width: 80%;
+        min-height: 280px;
+      }
+      max-width: 50%;
+
+      &__quantity{
+        @include flex.flexCenterColumn;
+        justify-content: space-between;
+        width: 80px;
+        height: 250px;
+
+        &__button{
+          @include flex.flexCenterColumn;
+          background-color: white;
+          width: 45px;
+          height: 45px;
+          border: 1px solid #1D1F22;
+        }
+
+        &__value{
+          color: #1D1F22;
+          font-weight: 500;
+          font-size: 24px;
+        }
+      }
     }
   }
 
@@ -70,6 +110,18 @@ font-weight: 700;
         justify-content: flex-start;
         width: 50px;
       }
+    &__order-btn{
+      border:none;
+      text-transform: uppercase;
+      background-color: #5ECE7B;
+      color: white;
+      max-width: 270px;
+      min-width: 150px;
+      width: 30vw;
+      height: 43px;
+      margin-top: 15px;
     }
+    }
+
   }
 }
