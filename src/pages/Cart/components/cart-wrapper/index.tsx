@@ -5,60 +5,134 @@ import { BasketSizePreview } from '../cart-size-preview';
 import './styles.scss';
 import { PricePreview } from '../price-preview';
 import { Nav } from '../../../../layouts/nav';
+import { CartImgPreview } from '../cart-img-preview';
+import {
+  eraseTotalValue,
+  setBasketPrice,
+  setBasketQuantity,
+  setBasketTax,
+  updateBasket,
+} from '../../../../store/features/basket/basket-slice';
+import { PlusIcon } from '../../../../assets/svg/PlusIcon';
+import { MinusIcon } from '../../../../assets/svg/MinusIcon';
+
 class CartWrapper extends Component<any> {
-  state = {
-    total: 0,
-    tax: 0
+  getCartSummary = (basket) => {
+    const { dispatch } = this.props;
+    if (basket) {
+      const eachTotalQuantity = basket.map((item) => {
+        return item.price * item.quantity;
+      });
+      const totalBasketSummary = eachTotalQuantity.reduce((a, b) => a + b, 0);
+      dispatch(setBasketPrice(totalBasketSummary));
+      this.getTax(totalBasketSummary);
+    }
   };
 
-  getPickedCurrencyPrices = (items, currency)=> {
-    const data = items.map((item) => {
-      const values = item.allPrices.filter(
-          (singlePrice) => singlePrice.currency.symbol === currency.value,
+  getTotalQuantity = (basket) => {
+    if (basket) {
+      const { dispatch } = this.props;
+      const quantityArray = basket.map((item) => {
+        return item.quantity;
+      });
+      const quantitySummary = quantityArray.reduce((a, b) => a + b, 0);
+      dispatch(setBasketQuantity(quantitySummary));
+    }
+  };
+
+  getTax = (cartSummary: number) => {
+    const { dispatch } = this.props;
+    dispatch(setBasketTax(Number(cartSummary * 0.21)));
+  };
+
+  getProductsWithPickedCurrency = async (basket, currency) => {
+    if (basket.items.length < 1) return;
+    return await basket.items.map((item) => {
+      const newCurrency = item.allPrices.filter((item) =>
+        item.currency.symbol === currency.value ? item.amount : item.price,
       );
-      return values[0];
+      return { ...item, price: newCurrency[0].amount };
     });
-    data.map((item) =>
-        this.setState((prev: any) => ({ total: prev.total + item.amount, tax: (prev.total + item.amount) * 0.21})),
+  };
+
+  removeItemFromCart = (i: number) => {
+    const { basketSelector, dispatch } = this.props;
+    const cartAfterDeletingItem = basketSelector.items.filter(
+      (item, index) => index !== i,
     );
-  }
+    dispatch(updateBasket(cartAfterDeletingItem));
+    this.getCartSummary(cartAfterDeletingItem);
+    this.getTotalQuantity(cartAfterDeletingItem);
+  };
+
+  handleQuantity = (i: number, sign: string) => {
+    const { basketSelector, dispatch } = this.props;
+    const updatedItemsInCart = [];
+    basketSelector.items.filter((item, index) => {
+      if (index === i) {
+        const quantityToUpdate = item.quantity;
+        if (sign === '+') {
+          updatedItemsInCart.push({ ...item, quantity: quantityToUpdate + 1 });
+        } else if (sign === '-') {
+          updatedItemsInCart.push({ ...item, quantity: quantityToUpdate - 1 });
+        }
+      } else if (index !== i) {
+        updatedItemsInCart.push(item);
+      }
+      this.getTotalQuantity(updatedItemsInCart);
+      dispatch(updateBasket(updatedItemsInCart));
+    });
+  };
 
   componentDidMount() {
-    const { basketSelector, currency } = this.props;
-    const {items} = basketSelector
-    this.getPickedCurrencyPrices(items, currency)
+    (async () => {
+      const { basketSelector, dispatch, currency } = this.props;
+      dispatch(eraseTotalValue());
+      if (basketSelector.items.length < 1) return;
+      this.getTotalQuantity(basketSelector.items);
+
+      this.getProductsWithPickedCurrency(basketSelector, currency).then(
+        (basket) => {
+          this.getCartSummary(basket);
+        },
+      );
+    })();
   }
 
   componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<{}>) {
-    const { basketSelector, currency } = this.props;
-      const {items} = basketSelector
-    if (prevProps.currency !== this.props.currency) {
-      this.setState({
-        total: 0,
-        tax:0,
-      });
-      this.getPickedCurrencyPrices(items, currency)
-    }
+    (async () => {
+      const { basketSelector, currency } = this.props;
+      if (prevProps.currency !== this.props.currency) {
+        await this.getProductsWithPickedCurrency(basketSelector, currency).then(
+          (basket) => this.getCartSummary(basket),
+        );
+      }
+      if (
+        prevProps.basketSelector.quantity !== this.props.basketSelector.quantity
+      ) {
+        this.getCartSummary(basketSelector.items);
+      }
+    })();
   }
+
   render() {
-    const { basketSelector, currency, dispatch } = this.props;
-    const { total, tax } = this.state;
+    const { basketSelector, currency } = this.props;
     return (
       <>
         <Nav />
-        <section className="cart-wrapper">
-          <h2 className="cart-wrapper__title">cart</h2>
+        <section className='cart-wrapper'>
+          <h2 className='cart-wrapper__title'>cart</h2>
 
-          {basketSelector.items.map((item,index) => (
+          {basketSelector.items.map((item, index) => (
             <div
               key={index}
-              className="cart-wrapper__product-wrapper"
+              className='cart-wrapper__product-wrapper'
             >
-              <section className="cart-wrapper__product-wrapper__left-column">
-                <h3 className="cart-wrapper__product-wrapper__left-column__brand">
+              <section className='cart-wrapper__product-wrapper__left-column'>
+                <h3 className='cart-wrapper__product-wrapper__left-column__brand'>
                   {item.brand}
                 </h3>
-                <h3 className="cart-wrapper__product-wrapper__left-column__name">
+                <h3 className='cart-wrapper__product-wrapper__left-column__name'>
                   {item.name}
                 </h3>
                 <PricePreview
@@ -78,31 +152,62 @@ class CartWrapper extends Component<any> {
                   />
                 )}
               </section>
-              <section className="cart-wrapper__product-wrapper__right-column">
-                column second
+              <section className='cart-wrapper__product-wrapper__right-column'>
+                <section className='cart-wrapper__product-wrapper__right-column__quantity'>
+                  <button
+                    className='cart-wrapper__product-wrapper__right-column__quantity__button'
+                    onClick={() => this.handleQuantity(index, '+')}
+                  >
+                    <PlusIcon />
+                  </button>
+                  <p className='cart-wrapper__product-wrapper__right-column__quantity__value'>
+                    {item.quantity}
+                  </p>
+                  {item.quantity < 2 ? (
+                    <button
+                      className='cart-wrapper__product-wrapper__right-column__quantity__button'
+                      onClick={() => this.removeItemFromCart(index)}
+                    >
+                      <MinusIcon />
+                    </button>
+                  ) : (
+                    <button
+                      className='cart-wrapper__product-wrapper__right-column__quantity__button'
+                      onClick={() => this.handleQuantity(index, '-')}
+                    >
+                      <MinusIcon />
+                    </button>
+                  )}
+                </section>
+                <CartImgPreview gallery={item.gallery} />
               </section>
             </div>
           ))}
-          <section className="cart-wrapper__summary">
-            <p className="cart-wrapper__summary__description">
+          <section className='cart-wrapper__summary'>
+            <p className='cart-wrapper__summary__description'>
               Tax 21%:
-              <span className="cart-wrapper__summary__description__span">
-                {currency.value}{tax.toFixed(2)}
-              </span>
-            </p>
-            <p className="cart-wrapper__summary__description">
-              Quantity:
-              <span className="cart-wrapper__summary__description__span">
-                {basketSelector.items.length}
-              </span>
-            </p>
-            <p className="cart-wrapper__summary__description">
-              Total:
-              <span className="cart-wrapper__summary__description__span">
+              <span className='cart-wrapper__summary__description__span'>
                 {currency.value}
-                {total.toFixed(2)}
+                {basketSelector.tax.toFixed(2)}
               </span>
             </p>
+            <p className='cart-wrapper__summary__description'>
+              Quantity:
+              <span className='cart-wrapper__summary__description__span'>
+                {basketSelector.quantity}
+              </span>
+            </p>
+            <p className='cart-wrapper__summary__description'>
+              Total:
+              <span className='cart-wrapper__summary__description__span'>
+                {currency.value}
+                {/* {total.toFixed(2)}*/}
+                {basketSelector.totalPrice.toFixed(2)}
+              </span>
+            </p>
+            <button className='cart-wrapper__summary__description__order-btn'>
+              order
+            </button>
           </section>
         </section>
       </>
