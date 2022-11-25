@@ -6,20 +6,19 @@ import { Props } from './types';
 import { handleCartState } from '../../../../store/features/basket/basket-slice';
 class BasketButtonC extends Component<Props> {
   handleCart = (state: boolean) => {
-    const {  dispatch } = this.props;
+    const { dispatch } = this.props;
     dispatch(handleCartState(state));
   };
   render() {
     const { basketSelector } = this.props;
-    const {items} = basketSelector
+    const { quantity } = basketSelector;
     return (
-        <button className='button'>
-          <BasketIcon
-            onClick={() => this.handleCart(true)}
-          />
-            {items.length > 0 && <span className='button__items-in-cart'>{items.length}</span> }
-
-        </button>
+      <button className='button'>
+        <BasketIcon onClick={() => this.handleCart(true)} />
+        {quantity > 0 && (
+          <span className='button__items-in-cart'>{quantity}</span>
+        )}
+      </button>
     );
   }
 }
