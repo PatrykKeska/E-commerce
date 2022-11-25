@@ -13,8 +13,8 @@ class BasketButtonC extends Component<Props> {
     const { basketSelector } = this.props;
     const { quantity } = basketSelector;
     return (
-      <button className='button'>
-        <BasketIcon onClick={() => this.handleCart(true)} />
+      <button onClick={() => this.handleCart(true)}  className='button'>
+        <BasketIcon />
         {quantity > 0 && (
           <span className='button__items-in-cart'>{quantity}</span>
         )}

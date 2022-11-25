@@ -3,17 +3,20 @@ import './style.scss';
 import { State } from './types/types';
 import { ArrowIcon } from '../../../../assets/svg/ArrowIcon';
 import { getCurrency } from '../../../../Api/getCurrency';
-import { setCurrency } from '../../../../store/features/currency/currency-slice';
-import { connect } from 'react-redux';
+import {
+  CurrencyState,
+  setCurrency,
+} from '../../../../store/features/currency/currency-slice';
 import { Dispatch } from 'redux';
-import { RootState } from '../../../../store';
+import { ReduxHOC } from '../../../../pages/common/components/ReduxHOC';
+import { handleCartState } from '../../../../store/features/basket/basket-slice';
 
 interface Props {
   dispatch: Dispatch;
-  currency: string;
+  currency: CurrencyState;
 }
 
-class SelectCurrency extends Component<Props, State> {
+class SelectCurrencyC extends Component<Props, State> {
   state: State = {
     isOpen: false,
     selectValue: '$',
@@ -21,7 +24,9 @@ class SelectCurrency extends Component<Props, State> {
   };
 
   handleClick = () => {
+    const { dispatch } = this.props;
     this.setState((prev: State) => ({ isOpen: !prev.isOpen }));
+    dispatch(handleCartState(false));
   };
   handlePickCurrency = (symbol: string) => {
     this.props.dispatch(setCurrency(symbol));
@@ -36,6 +41,7 @@ class SelectCurrency extends Component<Props, State> {
 
   render() {
     const { availableCurrencies, isOpen } = this.state;
+    const { currency } = this.props;
     return (
       <>
         <ul className='select'>
@@ -43,7 +49,9 @@ class SelectCurrency extends Component<Props, State> {
             onClick={this.handleClick}
             className='select__positioner__option--picked'
           >
-            {this.props.currency} <ArrowIcon />
+            <>
+              {currency.value} <ArrowIcon />
+            </>
           </li>
           {isOpen && (
             <div className='select__positioner'>
@@ -63,8 +71,6 @@ class SelectCurrency extends Component<Props, State> {
     );
   }
 }
-const mapStateToProps = (state: RootState) => ({
-  currency: state.currency.value,
-});
 
-export default connect(mapStateToProps)(SelectCurrency);
+const SelectCurrency = ReduxHOC(SelectCurrencyC);
+export { SelectCurrency };
