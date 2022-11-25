@@ -97,15 +97,15 @@ class ProductDetailsPage extends Component<Props, State> {
     return (
       <>
         <Nav />
-        <section className="product-details-main-wrapper">
+        <section className='product-details-main-wrapper'>
           <Modal />
-          <section className="product-details-main-wrapper__left-column">
+          <section className='product-details-main-wrapper__left-column'>
             <ProductImageComponent
               name={name}
               attributes={gallery}
             />
           </section>
-          <section className="product-details-main-wrapper__right-column">
+          <section className='product-details-main-wrapper__right-column'>
             <ProductName
               brand
               name={brand}

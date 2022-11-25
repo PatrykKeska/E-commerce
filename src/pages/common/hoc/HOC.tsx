@@ -46,7 +46,7 @@ export function HOC(category: string) {
         <>
           <Nav />
           <CategoryTitle name={category} />
-          <section className="main-section">
+          <section className='main-section'>
             {products.map((singleProduct) => (
               <Product
                 key={singleProduct.id}

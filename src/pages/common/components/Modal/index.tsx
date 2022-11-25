@@ -13,12 +13,12 @@ class ModalComponent extends Component<Props> {
     return (
       <>
         {modalSelector.isOpen ? (
-          <div className="response-modal">
-            <h3 className="response-modal__tittle">{modalSelector.title}</h3>
-            <p className="response-modal__message">{modalSelector.message}</p>
+          <div className='response-modal'>
+            <h3 className='response-modal__tittle'>{modalSelector.title}</h3>
+            <p className='response-modal__message'>{modalSelector.message}</p>
             <button
               onClick={this.closeModal}
-              className="response-modal__button"
+              className='response-modal__button'
             >
               Close
             </button>

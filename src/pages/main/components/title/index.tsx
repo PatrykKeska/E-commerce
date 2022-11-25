@@ -8,6 +8,6 @@ export class Title extends React.Component<Props, State> {
   };
 
   render() {
-    return <h2 className="title">{this.state.value}</h2>;
+    return <h2 className='title'>{this.state.value}</h2>;
   }
 }

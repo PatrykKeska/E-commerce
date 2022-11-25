@@ -11,10 +11,10 @@ export class Nav extends Component {
     return (
       <TopBar>
         <Container>
-          <NaviLink name="all" />
-          <NaviLink name="clothes" />
-          <NaviLink name="tech" />
-          <NaviLink name="cart" />
+          <NaviLink name='all' />
+          <NaviLink name='clothes' />
+          <NaviLink name='tech' />
+          <NaviLink name='cart' />
         </Container>
         <Container center>
           <GreenLogo />

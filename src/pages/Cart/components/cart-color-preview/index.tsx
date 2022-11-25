@@ -6,10 +6,10 @@ class BasketColorPreview extends Component<Props> {
   render() {
     const { attributes, pickedColor } = this.props;
     return (
-      <section className="basket-color-picker">
-        <h3 className="basket-color-picker__name">color:</h3>
-        <div className="basket-color-picker__select-options">
-          <ul className="basket-color-picker__select-options__ul">
+      <section className='basket-color-picker'>
+        <h3 className='basket-color-picker__name'>color:</h3>
+        <div className='basket-color-picker__select-options'>
+          <ul className='basket-color-picker__select-options__ul'>
             {attributes.map((item) => (
               <li
                 style={{ backgroundColor: `${item}` }}

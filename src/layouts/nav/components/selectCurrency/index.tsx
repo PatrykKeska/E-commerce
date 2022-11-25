@@ -38,18 +38,18 @@ class SelectCurrency extends Component<Props, State> {
     const { availableCurrencies, isOpen } = this.state;
     return (
       <>
-        <ul className="select">
+        <ul className='select'>
           <li
             onClick={this.handleClick}
-            className="select__positioner__option--picked"
+            className='select__positioner__option--picked'
           >
             {this.props.currency} <ArrowIcon />
           </li>
           {isOpen && (
-            <div className="select__positioner">
+            <div className='select__positioner'>
               {availableCurrencies.map((option) => (
                 <li
-                  className="select__positioner__option"
+                  className='select__positioner__option'
                   key={option.symbol}
                   onClick={() => this.handlePickCurrency(option.symbol)}
                 >

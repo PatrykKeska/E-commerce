@@ -4,7 +4,7 @@ import './style.scss';
 class BasketButton extends Component {
   render() {
     return (
-      <button className="button">
+      <button className='button'>
         <BasketIcon />
       </button>
     );
