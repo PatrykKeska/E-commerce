@@ -29,7 +29,6 @@ class CartButton extends Component<Props> {
     });
   };
 
-
   handleAddingProduct = () => {
     const { selector, dispatch, basketSelector } = this.props;
     if (selector.allColors.length > 0 && selector.color === '') {
@@ -120,11 +119,18 @@ class CartButton extends Component<Props> {
           dispatch(updateBasket(updatedCart));
         } else if (!sameSize) {
           dispatch(updateBasket([...basketSelector.items, { ...selector }]));
-        } else if (selector.color === '' && selector.size === '' && isItemExistInCart) {
+        } else if (
+          selector.color === '' &&
+          selector.size === '' &&
+          isItemExistInCart
+        ) {
           dispatch(
             updateBasket([
               ...exceptItemWithNoAttr,
-              { ...isItemExistInCart, quantity: isItemExistInCart.quantity + 1 },
+              {
+                ...isItemExistInCart,
+                quantity: isItemExistInCart.quantity + 1,
+              },
             ]),
           );
         }
