@@ -22,6 +22,7 @@ import {
   setProductStock,
 } from '../../store/features/product-details/product-details-slice';
 import { Modal } from '../common/components/Modal';
+import {CartPage} from '../Cart/components/cart-wrapper';
 class ProductDetailsPage extends Component<Props, State> {
   state: State = {
     name: '',
@@ -99,6 +100,7 @@ class ProductDetailsPage extends Component<Props, State> {
         <Nav />
         <section className='product-details-main-wrapper'>
           <Modal />
+          <CartPage/>
           <section className='product-details-main-wrapper__left-column'>
             <ProductImageComponent
               name={name}
