@@ -12,6 +12,7 @@ export interface productDetailsState {
   allColors?: [];
   allSizes?: [];
   inStock: boolean;
+  quantity: number;
 }
 
 const initialState: productDetailsState = {
@@ -26,6 +27,7 @@ const initialState: productDetailsState = {
   allColors: [],
   allSizes: [],
   inStock: false,
+  quantity: 1,
 };
 
 interface setColorDetails {
@@ -68,6 +70,9 @@ export const productDetailsSlice = createSlice({
   reducers: {
     setProductColor: (state: productDetailsState, action: setColorDetails) => {
       state.color = action.payload;
+    },
+    clearDetails: (state: productDetailsState) => {
+      state = initialState;
     },
     setProductPrice: (state: productDetailsState, action: setPriceDetails) => {
       state.price = action.payload;
@@ -118,4 +123,5 @@ export const {
   setProductAllColors,
   setProductAllSizes,
   setProductStock,
+  clearDetails,
 } = productDetailsSlice.actions;

@@ -5,6 +5,8 @@ import { CategoryTitle } from '../components/Category-title';
 import './styles.scss';
 import { Props, State } from './types/types';
 import Product from '../components/Product';
+import { CartCoverElement } from '../components/cart-cover-element';
+import { MiniCart } from '../../Cart/components/cart-wrapper/mini-cart';
 export function HOC(category: string) {
   return class PageView extends Component<Props, State> {
     state: State = {
@@ -46,7 +48,9 @@ export function HOC(category: string) {
         <>
           <Nav />
           <CategoryTitle name={category} />
-          <section className="main-section">
+          <section className='main-section'>
+            <CartCoverElement />
+            <MiniCart />
             {products.map((singleProduct) => (
               <Product
                 key={singleProduct.id}

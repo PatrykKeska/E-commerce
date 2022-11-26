@@ -6,7 +6,7 @@ export class NaviLink extends Component<Props> {
   render() {
     return (
       <NavLink
-        className="navi-link"
+        className='navi-link'
         to={`/${this.props.name}`}
       >
         {this.props.name}

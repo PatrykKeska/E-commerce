@@ -1,8 +1,7 @@
-import { Dispatch } from 'redux';
 import { Basket } from '../../../../store/features/basket/basket-slice';
+import { Dispatch } from 'redux';
 
 export interface Props {
-  modalSelector: { isOpen: boolean; title: string; message: string };
-  dispatch: Dispatch;
   basketSelector: Basket;
+  dispatch: Dispatch;
 }

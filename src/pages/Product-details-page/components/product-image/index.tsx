@@ -27,16 +27,16 @@ class ProductImage extends Component<Props, State> {
     const { attributes, name, useRef } = this.props;
     const { mainPhoto } = this.state;
     return (
-      <section className="product-image-wrapper">
+      <section className='product-image-wrapper'>
         <section
           ref={useRef}
-          className="product-image-wrapper__preview"
+          className='product-image-wrapper__preview'
         >
           {attributes.map((photo, index) => (
             <img
               onClick={() => this.handleClick(index)}
               key={photo}
-              className="product-image-wrapper__preview__photo"
+              className='product-image-wrapper__preview__photo'
               src={photo}
               alt={`this is image of ${name}`}
             />
@@ -45,13 +45,13 @@ class ProductImage extends Component<Props, State> {
         {attributes.length > 1 && (
           <div>
             <button
-              className="product-image-wrapper__button"
+              className='product-image-wrapper__button'
               onClick={() => this.handleScroll('left')}
             >
               <LeftArrow />
             </button>
             <button
-              className="product-image-wrapper__button"
+              className='product-image-wrapper__button'
               onClick={() => this.handleScroll('right')}
             >
               <RightArrow />
@@ -60,7 +60,7 @@ class ProductImage extends Component<Props, State> {
         )}
         <img
           key={mainPhoto}
-          className="product-image-wrapper__main-photo"
+          className='product-image-wrapper__main-photo'
           src={attributes[this.state.mainPhoto]}
           alt={`this is image of ${name}`}
         />

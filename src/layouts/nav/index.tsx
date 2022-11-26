@@ -5,16 +5,17 @@ import { Container } from './components/container/container';
 import { BasketButton } from './components/basketButton';
 import { GreenLogo } from '../../assets/svg/GreenLogo';
 import './styles.scss';
-import SelectCurrency from './components/selectCurrency';
-export class Nav extends Component {
+import { SelectCurrency } from './components/selectCurrency';
+import { ReduxHOC } from '../../pages/common/components/ReduxHOC';
+import { Props } from './types/types';
+export class NavC extends Component<Props> {
   render() {
     return (
       <TopBar>
         <Container>
-          <NaviLink name="all" />
-          <NaviLink name="clothes" />
-          <NaviLink name="tech" />
-          <NaviLink name="cart" />
+          <NaviLink name='all' />
+          <NaviLink name='clothes' />
+          <NaviLink name='tech' />
         </Container>
         <Container center>
           <GreenLogo />
@@ -27,3 +28,6 @@ export class Nav extends Component {
     );
   }
 }
+
+const Nav = ReduxHOC(NavC);
+export { Nav };

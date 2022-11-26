@@ -22,9 +22,9 @@ class SizePicker extends Component<SizePickerProps, State> {
     const { attributes, selector } = this.props;
     const { checked } = this.state;
     return (
-      <section className="size-picker">
-        <h3 className="size-picker__name">size:</h3>
-        <div className="size-picker__select-options">
+      <section className='size-picker'>
+        <h3 className='size-picker__name'>size:</h3>
+        <div className='size-picker__select-options'>
           {attributes.map((size) => (
             <div key={size}>
               <label
@@ -33,7 +33,7 @@ class SizePicker extends Component<SizePickerProps, State> {
                   size === selector.size ? 'picked-size' : ''
                 }`}
               >
-                <span className="size-picker__select-options__label__span">
+                <span className='size-picker__select-options__label__span'>
                   {size}
                 </span>
               </label>
@@ -42,8 +42,8 @@ class SizePicker extends Component<SizePickerProps, State> {
                 checked={checked}
                 name={size}
                 id={size}
-                className="size-picker__select-options__input"
-                type="radio"
+                className='size-picker__select-options__input'
+                type='radio'
                 value={size}
               />
             </div>
