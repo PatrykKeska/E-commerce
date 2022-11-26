@@ -1,0 +1,25 @@
+.cart-cover-element{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,.6);
+  position: absolute;
+  top:90px;
+  left: 0;
+  z-index: 3;
+  animation: renderSiteCover .2s linear;
+
+  @media(max-width: 700px){
+  top: 170px;
+  }
+}
+
+@keyframes renderSiteCover {
+  from{
+    opacity: 0;
+  }
+
+  to{
+    opacity: 1;
+  }
+
+}

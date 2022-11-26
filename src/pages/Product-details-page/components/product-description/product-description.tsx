@@ -6,9 +6,9 @@ class ProductDescription extends Component<Props> {
   render() {
     const { attributes } = this.props;
     return (
-      <section className="product-description-wrapper">
+      <section className='product-description-wrapper'>
         <Interweave
-          className="product-description-wrapper__text"
+          className='product-description-wrapper__text'
           content={attributes}
         />
       </section>

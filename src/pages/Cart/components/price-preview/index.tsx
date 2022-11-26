@@ -9,7 +9,7 @@ class Price extends Component<Props> {
     amount: 0,
   };
   componentDidMount() {
-    const { currency, allPrices, dispatch } = this.props;
+    const { currency, allPrices } = this.props;
     (async () => {
       const pickedPrice = allPrices.filter(
         (singlePrice) => singlePrice.currency.symbol === currency.value,
@@ -21,14 +21,28 @@ class Price extends Component<Props> {
     })();
   }
 
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>) {
+    if (prevProps.currency.value !== this.props.currency.value) {
+      const { currency, allPrices } = this.props;
+      (async () => {
+        const pickedPrice = allPrices.filter(
+          (singlePrice) => singlePrice.currency.symbol === currency.value,
+        );
+        this.setState({
+          symbol: pickedPrice[0].currency.symbol,
+          amount: pickedPrice[0].amount,
+        });
+      })();
+    }
+  }
+
   render() {
-    const { allPrices, currency } = this.props;
     const { symbol, amount } = this.state;
     return (
-      <section className="price-preview-wrapper">
-        <p className="price-preview-wrapper__all">
-          <span className="price-preview-wrapper__currency">{symbol}</span>
-          <span className="price-preview-wrapper__price">{amount}</span>
+      <section className='price-preview-wrapper'>
+        <p className='price-preview-wrapper__all'>
+          <span className='price-preview-wrapper__currency'>{symbol}</span>
+          <span className='price-preview-wrapper__price'>{amount}</span>
         </p>
       </section>
     );

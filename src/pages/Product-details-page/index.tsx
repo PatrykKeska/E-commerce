@@ -22,6 +22,8 @@ import {
   setProductStock,
 } from '../../store/features/product-details/product-details-slice';
 import { Modal } from '../common/components/Modal';
+import { CartCoverElement } from '../common/components/cart-cover-element';
+import { MiniCart } from '../Cart/components/cart-wrapper/mini-cart';
 class ProductDetailsPage extends Component<Props, State> {
   state: State = {
     name: '',
@@ -97,15 +99,17 @@ class ProductDetailsPage extends Component<Props, State> {
     return (
       <>
         <Nav />
-        <section className="product-details-main-wrapper">
+        <section className='product-details-main-wrapper'>
+          <CartCoverElement />
+          <MiniCart />
           <Modal />
-          <section className="product-details-main-wrapper__left-column">
+          <section className='product-details-main-wrapper__left-column'>
             <ProductImageComponent
               name={name}
               attributes={gallery}
             />
           </section>
-          <section className="product-details-main-wrapper__right-column">
+          <section className='product-details-main-wrapper__right-column'>
             <ProductName
               brand
               name={brand}

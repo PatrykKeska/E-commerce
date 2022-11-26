@@ -1,6 +1,8 @@
 import { Dispatch } from 'redux';
+import { Basket } from '../../../../store/features/basket/basket-slice';
 
 export interface Props {
+  basketSelector: Basket;
   selector: {
     size?: string;
     color?: string;
@@ -13,6 +15,7 @@ export interface Props {
     allColors?: [];
     allSizes?: [];
     inStock: boolean;
+    quantity: number;
   };
   dispatch: Dispatch;
 }

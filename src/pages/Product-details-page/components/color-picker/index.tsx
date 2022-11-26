@@ -21,9 +21,9 @@ class ColorPicker extends Component<ColorPickerProps, State> {
     const { checked } = this.state;
     const { attributes, selector } = this.props;
     return (
-      <section className="color-picker">
-        <h3 className="color-picker__name">color:</h3>
-        <div className="color-picker__select-options">
+      <section className='color-picker'>
+        <h3 className='color-picker__name'>color:</h3>
+        <div className='color-picker__select-options'>
           {attributes.map((color) => (
             <div key={color}>
               <label
@@ -38,8 +38,8 @@ class ColorPicker extends Component<ColorPickerProps, State> {
                 checked={checked}
                 name={color}
                 id={color}
-                className="color-picker__select-options__input"
-                type="radio"
+                className='color-picker__select-options__input'
+                type='radio'
                 value={color}
               />
             </div>

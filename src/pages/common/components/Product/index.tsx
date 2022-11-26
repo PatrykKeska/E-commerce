@@ -62,25 +62,25 @@ class Product extends Component<ProductProps, State> {
           isActive && 'product-is-active',
         )}
       >
-        {!inStock && <p className="product__out-of-stock">Out of Stock</p>}
+        {!inStock && <p className='product__out-of-stock'>Out of Stock</p>}
         <img
-          className="product__img"
+          className='product__img'
           src={gallery[0]}
           alt={`this is product: ${name}`}
         />
-        <h3 className="product__title">{name}</h3>
-        <p className="product__currency">
-          <span className="product__currency__span-symbol">{currency}</span>
-          <span className="product__currency__span-first">
+        <h3 className='product__title'>{name}</h3>
+        <p className='product__currency'>
+          <span className='product__currency__span-symbol'>{currency}</span>
+          <span className='product__currency__span-first'>
             {prices.toString()[0]}
           </span>
-          <span className="product__currency__span-rest">
+          <span className='product__currency__span-rest'>
             {this.Capitalize(prices)}
           </span>
         </p>
         {isActive && !attribute && inStock && (
           <ProductShopCartButton
-            className="product__basket-button"
+            className='product__basket-button'
             productID={id}
             category={category}
           />

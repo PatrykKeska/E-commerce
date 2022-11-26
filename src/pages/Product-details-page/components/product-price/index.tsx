@@ -28,16 +28,16 @@ class ProductPrice extends Component<Props> {
   render() {
     const { selector, currency } = this.props;
     return (
-      <section className="product-price">
-        <h3 className="product-price__name">price:</h3>
-        <p className="product-price__currency">
-          <span className="product-price__currency__span-symbol">
+      <section className='product-price'>
+        <h3 className='product-price__name'>price:</h3>
+        <p className='product-price__currency'>
+          <span className='product-price__currency__span-symbol'>
             {currency.value}
           </span>
-          <span className="product-price__currency__span-first">
+          <span className='product-price__currency__span-first'>
             {selector.price.toString()[0]}
           </span>
-          <span className="product__currency__span-rest">
+          <span className='product__currency__span-rest'>
             {this.Capitalize(selector.price)}
           </span>
         </p>
