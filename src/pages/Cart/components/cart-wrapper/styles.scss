@@ -72,6 +72,7 @@
         width: 80px;
         height: 250px;
 
+
         &__button{
           @include flex.flexCenterColumn;
           background-color: white;
@@ -107,17 +108,31 @@ font-weight: 700;
         justify-content: flex-start;
         width: 50px;
       }
-    &__order-btn{
-      border:none;
-      text-transform: uppercase;
-      background-color: #5ECE7B;
-      color: white;
-      max-width: 270px;
-      min-width: 150px;
-      width: 30vw;
-      height: 43px;
-      margin-top: 15px;
-    }
+
+      &__btn-wrapper {
+        @include flex.flexCenterRow;
+        width: 100%;
+        gap: 20px;
+        padding: 50px;
+        &__btn {
+          @include flex.flexCenterRow;
+          border: none;
+          text-transform: uppercase;
+          background-color: #5ECE7B;
+          color: white;
+          max-width: 270px;
+          min-width: 150px;
+          width: 30vw;
+          height: 43px;
+          margin-top: 15px;
+          text-decoration: none;
+        }
+        .__btn--view{
+          background-color: white;
+          border: 1px solid #050505;
+          color: black;
+        }
+      }
     }
 
   }
