@@ -16,7 +16,6 @@ root.render(
   <Provider store={store}>
     <ApolloProvider client={client}>
       <RouterProvider router={router} />
-
     </ApolloProvider>
   </Provider>,
 );

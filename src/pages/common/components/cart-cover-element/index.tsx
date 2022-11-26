@@ -6,16 +6,18 @@ import { handleCartState } from '../../../../store/features/basket/basket-slice'
 
 class CartCoverElementC extends Component<Props> {
   handleClick = () => {
-    const {  dispatch } = this.props;
+    const { dispatch } = this.props;
     dispatch(handleCartState(false));
   };
-
-  componentDidMount() {
-    const { basketSelector } = this.props;
-    if (basketSelector.isOpen) {
+  componentDidUpdate() {
+    if (this.props.basketSelector.isOpen === true) {
       document.body.style.overflowY = 'hidden';
     }
+    if (this.props.basketSelector.isOpen === false) {
+      document.body.style.overflowY = 'unset';
+    }
   }
+
   componentWillUnmount() {
     document.body.style.overflowY = 'unset';
   }
@@ -23,17 +25,18 @@ class CartCoverElementC extends Component<Props> {
   render() {
     const { basketSelector } = this.props;
     const { isOpen } = basketSelector;
-    console.log(isOpen)
 
     return (
-<>
-      <div
-        key={String(isOpen)}
-        style={{ display: `${isOpen ? 'block' : 'none'}` }}
-        onClick={this.handleClick}
-        className='cart-cover-element'
-      />
-</>
+      <>
+        {isOpen ? (
+          <div
+            key={String(isOpen)}
+            style={{ display: `${isOpen ? 'block' : 'none'}` }}
+            onClick={this.handleClick}
+            className='cart-cover-element'
+          />
+        ) : null}
+      </>
     );
   }
 }
