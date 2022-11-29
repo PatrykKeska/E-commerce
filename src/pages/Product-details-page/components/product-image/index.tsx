@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { Props, State } from './types';
 import './styles.scss';
-import { RefHOC } from '../../../common/components/RefHOC';
 import { LeftArrow } from '../../../../assets/svg/LeftArrow';
 import { RightArrow } from '../../../../assets/svg/RightArrow';
+import { HooksAccessComponent } from '../../../common/components/HooksAccessComponent';
 class ProductImage extends Component<Props, State> {
   state: State = {
     mainPhoto: 0,
@@ -69,5 +69,5 @@ class ProductImage extends Component<Props, State> {
   }
 }
 
-const ProductImageComponent = RefHOC(ProductImage);
+const ProductImageComponent = HooksAccessComponent(ProductImage);
 export { ProductImageComponent };

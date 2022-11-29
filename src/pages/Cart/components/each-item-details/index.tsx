@@ -11,6 +11,8 @@ import { handleQuantity, removeItemFromCart } from '../cart-wrapper/functions';
 class EachItemDetails extends Component<Props> {
   render() {
     const { currency, basketSelector, dispatch } = this.props;
+    const { isOpen } = basketSelector;
+
     return (
       <>
         {basketSelector.items.map((item, index) => (
@@ -18,7 +20,7 @@ class EachItemDetails extends Component<Props> {
             key={index}
             className='cart-wrapper__product-wrapper'
           >
-            <section className='cart-wrapper__product-wrapper__left-column'>
+            <section className='cart-wrapper__product-wrapper__left-column '>
               <h3 className='cart-wrapper__product-wrapper__left-column__brand'>
                 {item.brand}
               </h3>
@@ -39,6 +41,7 @@ class EachItemDetails extends Component<Props> {
                 <BasketSizePreview
                   attributes={item.allSizes}
                   pickedSize={item.size}
+                  isOpen={isOpen}
                 />
               )}
             </section>

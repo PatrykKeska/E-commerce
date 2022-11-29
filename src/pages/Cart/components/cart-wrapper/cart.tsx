@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { ReduxHOC } from '../../../common/components/ReduxHOC';
 import './styles.scss';
 import { Nav } from '../../../../layouts/nav';
 import { eraseTotalValue } from '../../../../store/features/basket/basket-slice';
@@ -11,10 +10,15 @@ import {
   getProductsWithPickedCurrency,
   getTotalQuantity,
 } from './functions';
-import {Props} from './types';
+import { Props } from './types';
+import { CheckoutModal } from '../checkout-modal';
+import { HooksAccessComponent } from '../../../common/components/HooksAccessComponent';
 
 class CartWrapper extends Component<Props> {
   componentDidMount() {
+    if (this.props.basketSelector.isOpen === false) {
+      document.body.style.overflowY = 'unset';
+    }
     (async () => {
       const { basketSelector, dispatch, currency } = this.props;
       dispatch(eraseTotalValue());
@@ -28,33 +32,42 @@ class CartWrapper extends Component<Props> {
   }
 
   componentDidUpdate(prevProps) {
-    (async ()=>{
-      const {currency, basketSelector, dispatch} = this.props
-      await eachUpdateInComponent(prevProps, this.props, currency, basketSelector, dispatch)
-    })()}
+    (async () => {
+      const { currency, basketSelector, dispatch } = this.props;
+      await eachUpdateInComponent(
+        prevProps,
+        this.props,
+        currency,
+        basketSelector,
+        dispatch,
+      );
+    })();
+  }
 
   render() {
     const { basketSelector, currency, dispatch } = this.props;
 
     return (
-        <>
-          <Nav />
-          <section className='cart-wrapper'>
-            <h2 className='cart-wrapper__title'>cart</h2>
-            <EachItemDetails
-              dispatch={dispatch}
-              basketSelector={basketSelector}
-              currency={currency}
-            />
-            <CartSummary
-              basketSelector={basketSelector}
-              currency={currency}
-            />
-          </section>
-        </>
+      <>
+        <CheckoutModal />
+        <Nav />
+        <section className='cart-wrapper'>
+          <h2 className='cart-wrapper__title'>cart</h2>
+          <EachItemDetails
+            dispatch={dispatch}
+            basketSelector={basketSelector}
+            currency={currency}
+          />
+          <CartSummary
+            basketSelector={basketSelector}
+            currency={currency}
+            dispatch={dispatch}
+          />
+        </section>
+      </>
     );
   }
 }
 
-const CartPage = ReduxHOC(CartWrapper);
+const CartPage = HooksAccessComponent(CartWrapper);
 export { CartPage };

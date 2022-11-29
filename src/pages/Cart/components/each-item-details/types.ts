@@ -3,8 +3,8 @@ import { Dispatch } from 'redux';
 
 export interface Props {
   basketSelector: Basket;
-  currency:{
-    value:string
-  }
+  currency: {
+    value: string;
+  };
   dispatch: Dispatch;
 }

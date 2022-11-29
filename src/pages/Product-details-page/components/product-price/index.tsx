@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { ReduxHOC } from '../../../common/components/ReduxHOC';
 import './styles.scss';
 import { Props } from './types';
 import { getProductPrice } from '../../../../Api/getProductDetails';
 import { setProductPrice } from '../../../../store/features/product-details/product-details-slice';
+import { HooksAccessComponent } from '../../../common/components/HooksAccessComponent';
 class ProductPrice extends Component<Props> {
   Capitalize(prices: number) {
     return prices.toString().slice(1, prices.toString().length);
@@ -46,5 +46,5 @@ class ProductPrice extends Component<Props> {
   }
 }
 
-const ProductPriceComponent = ReduxHOC(ProductPrice);
+const ProductPriceComponent = HooksAccessComponent(ProductPrice);
 export { ProductPriceComponent };

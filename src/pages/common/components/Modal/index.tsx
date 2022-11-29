@@ -1,9 +1,9 @@
 import './styles.scss';
 import { Component } from 'react';
 import { Props } from './types';
-import { ReduxHOC } from '../ReduxHOC';
 import { closeModal } from '../../../../store/features/modal/modal-slice';
 import { setBasketQuantity } from '../../../../store/features/basket/basket-slice';
+import { HooksAccessComponent } from '../HooksAccessComponent';
 class ModalComponent extends Component<Props> {
   getTotalQuantity = (basket) => {
     if (basket) {
@@ -42,5 +42,5 @@ class ModalComponent extends Component<Props> {
   }
 }
 
-const Modal = ReduxHOC(ModalComponent);
+const Modal = HooksAccessComponent(ModalComponent);
 export { Modal };

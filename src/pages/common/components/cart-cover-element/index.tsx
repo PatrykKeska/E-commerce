@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import { ReduxHOC } from '../ReduxHOC';
 import './styles.scss';
 import { Props } from './types';
 import { handleCartState } from '../../../../store/features/basket/basket-slice';
+import { HooksAccessComponent } from '../HooksAccessComponent';
 
 class CartCoverElementC extends Component<Props> {
   handleClick = () => {
@@ -16,10 +16,6 @@ class CartCoverElementC extends Component<Props> {
     if (this.props.basketSelector.isOpen === false) {
       document.body.style.overflowY = 'unset';
     }
-  }
-
-  componentWillUnmount() {
-    document.body.style.overflowY = 'unset';
   }
 
   render() {
@@ -41,5 +37,5 @@ class CartCoverElementC extends Component<Props> {
   }
 }
 
-const CartCoverElement = ReduxHOC(CartCoverElementC);
+const CartCoverElement = HooksAccessComponent(CartCoverElementC);
 export { CartCoverElement };

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import './styles.scss';
 import { Props } from './types';
-import { ReduxHOC } from '../../../common/components/ReduxHOC';
+import { HooksAccessComponent } from '../../../common/components/HooksAccessComponent';
 class Price extends Component<Props> {
   state = {
     value: '',
@@ -21,7 +21,7 @@ class Price extends Component<Props> {
     })();
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<{}>) {
+  componentDidUpdate(prevProps: Readonly<Props>) {
     if (prevProps.currency.value !== this.props.currency.value) {
       const { currency, allPrices } = this.props;
       (async () => {
@@ -48,5 +48,5 @@ class Price extends Component<Props> {
     );
   }
 }
-const PricePreview = ReduxHOC(Price);
+const PricePreview = HooksAccessComponent(Price);
 export { PricePreview };

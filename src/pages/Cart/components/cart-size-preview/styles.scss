@@ -10,10 +10,11 @@ max-width: 300px;
   &__wrapper{
     @include flex.flexCenterRow;
     padding: 0;
-    gap: 10px;
+    gap: 8px;
     &__size{
       border: 1px solid #1D1F22;
       @include flex.flexCenterRow;
+      flex-wrap: wrap;
       width: 4.5vw;
       height: 3vw;
     font-size: .8em;

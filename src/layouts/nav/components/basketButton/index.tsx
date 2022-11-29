@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { BasketIcon } from '../../../../assets/svg/BasketIcon';
 import './style.scss';
-import { ReduxHOC } from '../../../../pages/common/components/ReduxHOC';
 import { Props } from './types';
 import { handleCartState } from '../../../../store/features/basket/basket-slice';
+import { HooksAccessComponent } from '../../../../pages/common/components/HooksAccessComponent';
 class BasketButtonC extends Component<Props> {
   handleCart = () => {
     const { dispatch, basketSelector } = this.props;
@@ -29,5 +29,5 @@ class BasketButtonC extends Component<Props> {
   }
 }
 
-const BasketButton = ReduxHOC(BasketButtonC);
+const BasketButton = HooksAccessComponent(BasketButtonC);
 export { BasketButton };

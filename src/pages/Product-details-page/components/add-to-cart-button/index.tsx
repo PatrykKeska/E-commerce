@@ -1,9 +1,7 @@
 import { Component } from 'react';
 import './styles.scss';
-import { ReduxHOC } from '../../../common/components/ReduxHOC';
 import {
   addProductToBasket,
-  setBasketQuantity,
   updateBasket,
 } from '../../../../store/features/basket/basket-slice';
 import {
@@ -13,6 +11,7 @@ import {
 } from '../../../../store/features/modal/modal-slice';
 import { Props } from './types';
 
+import { HooksAccessComponent } from '../../../common/components/HooksAccessComponent';
 import { clearDetails } from '../../../../store/features/product-details/product-details-slice';
 class CartButton extends Component<Props> {
   state = {
@@ -164,5 +163,5 @@ class CartButton extends Component<Props> {
     );
   }
 }
-const AddCartButton = ReduxHOC(CartButton);
+const AddCartButton = HooksAccessComponent(CartButton);
 export { AddCartButton };

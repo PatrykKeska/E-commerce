@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-interface ModalInterface {
+export interface ModalInterface {
   isOpen: boolean;
   title: string;
   message: string;
