@@ -1,9 +1,10 @@
 import { Component } from 'react';
 import { Props } from './types';
+import { placeAnOrder } from '../cart-wrapper/functions';
 
 class CartSummary extends Component<Props> {
   render() {
-    const { basketSelector, currency } = this.props;
+    const { basketSelector, currency, dispatch } = this.props;
     return (
       <>
         <section className='cart-wrapper__summary'>
@@ -29,7 +30,10 @@ class CartSummary extends Component<Props> {
             </span>
           </p>
           <div className='cart-wrapper__summary__description__btn-wrapper'>
-            <button className='cart-wrapper__summary__description__btn-wrapper__btn'>
+            <button
+              onClick={() => placeAnOrder(dispatch)}
+              className='cart-wrapper__summary__description__btn-wrapper__btn'
+            >
               order
             </button>
           </div>
