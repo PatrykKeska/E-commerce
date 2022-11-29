@@ -7,7 +7,6 @@ import { ProductPriceComponent } from './components/product-price';
 import { ProductDescription } from './components/product-description/product-description';
 import './styles.scss';
 import { ProductName } from './components/product-name';
-import { ParamHoc } from '../common/components/ParamHOC';
 import { Props, State } from './types';
 import { getProductDetails } from '../../Api/getProductDetails';
 import { ProductImageComponent } from './components/product-image';
@@ -24,6 +23,8 @@ import {
 import { Modal } from '../common/components/Modal';
 import { CartCoverElement } from '../common/components/cart-cover-element';
 import { MiniCart } from '../Cart/components/cart-wrapper/mini-cart';
+import { CheckoutModal } from '../Cart/components/checkout-modal';
+import { HooksAccessComponent } from '../common/components/HooksAccessComponent';
 class ProductDetailsPage extends Component<Props, State> {
   state: State = {
     name: '',
@@ -103,6 +104,7 @@ class ProductDetailsPage extends Component<Props, State> {
           <CartCoverElement />
           <MiniCart />
           <Modal />
+          <CheckoutModal />
           <section className='product-details-main-wrapper__left-column'>
             <ProductImageComponent
               name={name}
@@ -126,5 +128,5 @@ class ProductDetailsPage extends Component<Props, State> {
     );
   }
 }
-const ProductDetails = ParamHoc(ProductDetailsPage);
+const ProductDetails = HooksAccessComponent(ProductDetailsPage);
 export { ProductDetails };

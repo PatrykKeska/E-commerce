@@ -6,8 +6,8 @@ import { BasketButton } from './components/basketButton';
 import { GreenLogo } from '../../assets/svg/GreenLogo';
 import './styles.scss';
 import { SelectCurrency } from './components/selectCurrency';
-import { ReduxHOC } from '../../pages/common/components/ReduxHOC';
 import { Props } from './types/types';
+import { HooksAccessComponent } from '../../pages/common/components/HooksAccessComponent';
 export class NavC extends Component<Props> {
   render() {
     return (
@@ -29,5 +29,5 @@ export class NavC extends Component<Props> {
   }
 }
 
-const Nav = ReduxHOC(NavC);
+const Nav = HooksAccessComponent(NavC);
 export { Nav };

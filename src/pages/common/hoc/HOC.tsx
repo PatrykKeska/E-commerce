@@ -4,9 +4,10 @@ import { Nav } from '../../../layouts/nav';
 import { CategoryTitle } from '../components/Category-title';
 import './styles.scss';
 import { Props, State } from './types/types';
-import Product from '../components/Product';
 import { CartCoverElement } from '../components/cart-cover-element';
 import { MiniCart } from '../../Cart/components/cart-wrapper/mini-cart';
+import { CheckoutModal } from '../../Cart/components/checkout-modal';
+import { Product } from '../components/Product';
 export function HOC(category: string) {
   return class PageView extends Component<Props, State> {
     state: State = {
@@ -17,7 +18,6 @@ export function HOC(category: string) {
       (async () => {
         const result = await getProducts(category);
         const update = await filterCurrency(result, this.props.currency);
-
         this.setState({
           category: result.data.category.name,
           products: [...update],
@@ -51,6 +51,7 @@ export function HOC(category: string) {
           <section className='main-section'>
             <CartCoverElement />
             <MiniCart />
+            <CheckoutModal />
             {products.map((singleProduct) => (
               <Product
                 key={singleProduct.id}

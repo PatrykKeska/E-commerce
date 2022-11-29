@@ -8,8 +8,8 @@ import {
   setCurrency,
 } from '../../../../store/features/currency/currency-slice';
 import { Dispatch } from 'redux';
-import { ReduxHOC } from '../../../../pages/common/components/ReduxHOC';
 import { handleCartState } from '../../../../store/features/basket/basket-slice';
+import { HooksAccessComponent } from '../../../../pages/common/components/HooksAccessComponent';
 
 interface Props {
   dispatch: Dispatch;
@@ -72,5 +72,5 @@ class SelectCurrencyC extends Component<Props, State> {
   }
 }
 
-const SelectCurrency = ReduxHOC(SelectCurrencyC);
+const SelectCurrency = HooksAccessComponent(SelectCurrencyC);
 export { SelectCurrency };

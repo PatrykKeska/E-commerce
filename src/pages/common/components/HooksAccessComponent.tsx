@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { SizePickerProps } from '../../Product-details-page/components/size-picker/types';
+import { useNavigate, useParams } from 'react-router-dom';
 
-interface Props extends SizePickerProps {
-  children?: React.ReactNode;
-}
 
-const ReduxHOC = (Component: React.ComponentType<any>) => {
+const HooksAccessComponent = (Component: React.ComponentType<any>) => {
   return function hooks(props) {
     const dispatch = useDispatch();
+    const param = useParams();
     const selector = useSelector((store: RootState) => store.productDetails);
     const basketSelector = useSelector((store: RootState) => store.basket);
+    const navi = useNavigate();
     const modalSelector = useSelector((store: RootState) => store.modal);
     const currency = useSelector((store: RootState) => store.currency);
+
+    const ref = useRef(null);
 
     return (
       <Component
@@ -21,11 +22,14 @@ const ReduxHOC = (Component: React.ComponentType<any>) => {
         dispatch={dispatch}
         selector={selector}
         currency={currency}
+        useParams={param}
+        navigate={navi}
         basketSelector={basketSelector}
         modalSelector={modalSelector}
+        useRef={ref}
       />
     );
   };
 };
 
-export { ReduxHOC };
+export { HooksAccessComponent };

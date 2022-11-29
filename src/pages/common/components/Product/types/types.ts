@@ -4,7 +4,7 @@ export interface ProductProps {
   inStock: boolean;
   gallery: string[];
   attributes?: [];
-  currency: string;
+  currency: { value: string };
   prices: number;
   category: string;
   navigate: (arg: string) => void;

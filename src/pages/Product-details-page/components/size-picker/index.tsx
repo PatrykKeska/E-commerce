@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { ReduxHOC } from '../../../common/components/ReduxHOC';
 import { SizePickerProps, State } from './types';
 import { setProductSize } from '../../../../store/features/product-details/product-details-slice';
 import './styles.scss';
+import { HooksAccessComponent } from '../../../common/components/HooksAccessComponent';
 
 class SizePicker extends Component<SizePickerProps, State> {
   state: State = {
@@ -54,5 +54,5 @@ class SizePicker extends Component<SizePickerProps, State> {
   }
 }
 
-const SizePickerComponent = ReduxHOC(SizePicker);
+const SizePickerComponent = HooksAccessComponent(SizePicker);
 export { SizePickerComponent };

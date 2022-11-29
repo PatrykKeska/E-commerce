@@ -8,6 +8,7 @@ export interface Basket {
   quantity: number;
   tax: number;
   isOpen: boolean;
+  checkout: boolean;
 }
 const initialState: Basket = {
   items: [],
@@ -15,6 +16,7 @@ const initialState: Basket = {
   quantity: 0,
   tax: 0,
   isOpen: false,
+  checkout: false,
 };
 
 interface putProductToBasket {
@@ -37,6 +39,9 @@ interface updateBasket {
 }
 
 interface OpenCloseCart {
+  payload: boolean;
+}
+interface OpenCloseCheckout {
   payload: boolean;
 }
 
@@ -73,8 +78,20 @@ export const BasketSlice = createSlice({
     handleCartState: (state: Basket, action: OpenCloseCart) => {
       state.isOpen = action.payload;
     },
+    handleCheckout: (state: Basket, action: OpenCloseCheckout) => {
+      state.checkout = action.payload;
+    },
+
+    placeAnOrder: (state: Basket) => {
+      state.items = [];
+      state.totalPrice = 0;
+      state.tax = 0;
+      state.quantity = 0;
+    },
   },
 });
+
+
 
 export const {
   addProductToBasket,
@@ -86,4 +103,6 @@ export const {
   setBasketQuantity,
   setBasketTax,
   handleCartState,
+  handleCheckout,
+  placeAnOrder,
 } = BasketSlice.actions;

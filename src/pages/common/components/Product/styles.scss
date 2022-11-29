@@ -42,6 +42,9 @@
     bottom: 15%;
     right: 15%;
     animation:showUp .3s ease-in forwards;
+    background: none;
+    border: none;
+    z-index: 150;
 
   }
   &__img{

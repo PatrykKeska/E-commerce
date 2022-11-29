@@ -1,19 +1,18 @@
 import { Component } from 'react';
-import { ReduxHOC } from '../../../common/components/ReduxHOC';
 import './styles.scss';
-import {
-  eraseTotalValue,
-} from '../../../../store/features/basket/basket-slice';
+import { eraseTotalValue } from '../../../../store/features/basket/basket-slice';
 import { NavLink } from 'react-router-dom';
 import {
   eachUpdateInComponent,
   getCartSummary,
   getProductsWithPickedCurrency,
   getTotalQuantity,
-  handleRedirectToCart
+  handleRedirectToCart,
+  placeAnOrder,
 } from './functions';
-import {Props} from './types';
-import {EachItemDetails} from '../each-item-details';
+import { Props } from './types';
+import { EachItemDetails } from '../each-item-details';
+import { HooksAccessComponent } from '../../../common/components/HooksAccessComponent';
 
 class MiniCartWrapper extends Component<Props> {
   componentDidMount() {
@@ -30,10 +29,17 @@ class MiniCartWrapper extends Component<Props> {
   }
 
   componentDidUpdate(prevProps) {
-    (async ()=>{
-      const {currency, basketSelector, dispatch} = this.props
-      await eachUpdateInComponent(prevProps, this.props, currency, basketSelector, dispatch)
-    })()}
+    (async () => {
+      const { currency, basketSelector, dispatch } = this.props;
+      await eachUpdateInComponent(
+        prevProps,
+        this.props,
+        currency,
+        basketSelector,
+        dispatch,
+      );
+    })();
+  }
 
   render() {
     const { basketSelector, currency, dispatch } = this.props;
@@ -52,9 +58,9 @@ class MiniCartWrapper extends Component<Props> {
               </h2>
 
               <EachItemDetails
-                  dispatch={dispatch}
-                  basketSelector={basketSelector}
-                  currency={currency}
+                dispatch={dispatch}
+                basketSelector={basketSelector}
+                currency={currency}
               />
               <section className='cart-wrapper__summary'>
                 <p className='cart-wrapper__summary__description'>
@@ -66,13 +72,16 @@ class MiniCartWrapper extends Component<Props> {
                 </p>
                 <div className='cart-wrapper__summary__description__btn-wrapper'>
                   <NavLink
-                    onClick={()=>handleRedirectToCart(dispatch)}
+                    onClick={() => handleRedirectToCart(dispatch)}
                     to='/cart'
                     className='cart-wrapper__summary__description__btn-wrapper__btn __btn--view'
                   >
                     view bag
                   </NavLink>
-                  <button className='cart-wrapper__summary__description__btn-wrapper__btn'>
+                  <button
+                    onClick={() => placeAnOrder(dispatch)}
+                    className='cart-wrapper__summary__description__btn-wrapper__btn'
+                  >
                     checkout
                   </button>
                 </div>
@@ -85,5 +94,5 @@ class MiniCartWrapper extends Component<Props> {
   }
 }
 
-const MiniCart = ReduxHOC(MiniCartWrapper);
+const MiniCart = HooksAccessComponent(MiniCartWrapper);
 export { MiniCart };

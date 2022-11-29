@@ -26,7 +26,7 @@ class CartImgPreview extends Component<Props, State> {
   componentDidMount() {
     const { gallery } = this.props;
     this.setState({
-      max: this.props.gallery.length - 1,
+      max: gallery.length - 1,
     });
   }
 

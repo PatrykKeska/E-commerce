@@ -3,9 +3,9 @@ import './styles.scss';
 import { ProductProps, State } from './types/types';
 import clsx from 'clsx';
 import { ProductShopCartButton } from '../Product-shop-cart-button';
-import { addRedirectMethod } from '../RedirectorHOC';
+import { HooksAccessComponent } from '../HooksAccessComponent';
 
-class Product extends Component<ProductProps, State> {
+class ProductC extends Component<ProductProps, State> {
   state: State = {
     isActive: false,
     attribute: false,
@@ -27,9 +27,10 @@ class Product extends Component<ProductProps, State> {
   };
 
   handleRedirect = () => {
-    const navi = this.props.navigate;
-    navi(`${this.props.id}`);
+    const { navigate, id } = this.props;
+    navigate(`${id}`);
   };
+
   componentDidMount() {
     const { attributes } = this.props;
     if (!attributes) {
@@ -70,7 +71,9 @@ class Product extends Component<ProductProps, State> {
         />
         <h3 className='product__title'>{name}</h3>
         <p className='product__currency'>
-          <span className='product__currency__span-symbol'>{currency}</span>
+          <span className='product__currency__span-symbol'>
+            {currency.value}
+          </span>
           <span className='product__currency__span-first'>
             {prices.toString()[0]}
           </span>
@@ -80,6 +83,7 @@ class Product extends Component<ProductProps, State> {
         </p>
         {isActive && !attribute && inStock && (
           <ProductShopCartButton
+            onClick={this.handleRedirect}
             className='product__basket-button'
             productID={id}
             category={category}
@@ -89,5 +93,5 @@ class Product extends Component<ProductProps, State> {
     );
   }
 }
-
-export default addRedirectMethod(Product);
+const Product = HooksAccessComponent(ProductC);
+export { Product };
