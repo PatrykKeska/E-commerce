@@ -1,5 +1,6 @@
 import {
   handleCartState,
+  handleCheckout,
   setBasketPrice,
   setBasketQuantity,
   setBasketTax,
@@ -77,18 +78,26 @@ const handleRedirectToCart = (dispatch) => {
   dispatch(handleCartState(false));
 };
 
-const eachUpdateInComponent = async (prevProps,props, currency, basketSelector, dispatch)=> {
-    if (prevProps.currency !== props.currency) {
-      await getProductsWithPickedCurrency(basketSelector, currency).then(
-          (basket) => getCartSummary(basket, dispatch),
-      );
-    }
-    if (
-        prevProps.basketSelector.quantity !== props.basketSelector.quantity
-    ) {
-      getCartSummary(basketSelector.items, dispatch);
-    }
-}
+const eachUpdateInComponent = async (
+  prevProps,
+  props,
+  currency,
+  basketSelector,
+  dispatch,
+) => {
+  if (prevProps.currency !== props.currency) {
+    await getProductsWithPickedCurrency(basketSelector, currency).then(
+      (basket) => getCartSummary(basket, dispatch),
+    );
+  }
+  if (prevProps.basketSelector.quantity !== props.basketSelector.quantity) {
+    getCartSummary(basketSelector.items, dispatch);
+  }
+};
+
+const placeAnOrder = (dispatch) => {
+  dispatch(handleCheckout(true));
+};
 
 export {
   getCartSummary,
@@ -98,5 +107,6 @@ export {
   getProductsWithPickedCurrency,
   handleQuantity,
   handleRedirectToCart,
-  eachUpdateInComponent
+  eachUpdateInComponent,
+  placeAnOrder,
 };
