@@ -25,7 +25,7 @@ class CartWrapper extends Component<Props> {
       if (basketSelector.items.length < 1) return;
       getTotalQuantity(basketSelector.items, dispatch);
 
-      getProductsWithPickedCurrency(basketSelector, currency).then((basket) => {
+       getProductsWithPickedCurrency(basketSelector, currency).then((basket) => {
         getCartSummary(basket, dispatch);
       });
     })();
@@ -46,6 +46,7 @@ class CartWrapper extends Component<Props> {
 
   render() {
     const { basketSelector, currency, dispatch } = this.props;
+
 
     return (
       <>

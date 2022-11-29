@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { useNavigate, useParams } from 'react-router-dom';
 
+
 const HooksAccessComponent = (Component: React.ComponentType<any>) => {
   return function hooks(props) {
     const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const HooksAccessComponent = (Component: React.ComponentType<any>) => {
     const navi = useNavigate();
     const modalSelector = useSelector((store: RootState) => store.modal);
     const currency = useSelector((store: RootState) => store.currency);
+
     const ref = useRef(null);
 
     return (
